@@ -1,7 +1,7 @@
-defmodule SpectoPusher.Channel do
+defmodule SpectoPusher.Topic do
   use SpectoPusher.Web, :model
 
-  schema "channels" do
+  schema "topics" do
     field :name, :string
 
     timestamps()

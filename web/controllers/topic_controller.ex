@@ -1,22 +1,22 @@
-defmodule SpectoPusher.ChannelController do
+defmodule SpectoPusher.TopicController do
   use SpectoPusher.Web, :controller
 
-  alias SpectoPusher.Channel
+  alias SpectoPusher.Topic
 
   def index(conn, _params) do
-    channels = Repo.all(Channel)
-    render(conn, "index.json", channels: channels)
+    topics = Repo.all(Topic)
+    render(conn, "index.json", topics: topics)
   end
 
-  def create(conn, %{"channel" => channel_params}) do
-    changeset = Channel.changeset(%Channel{}, channel_params)
+  def create(conn, %{"topic" => topic_params}) do
+    changeset = Topic.changeset(%Topic{}, topic_params)
 
     case Repo.insert(changeset) do
-      {:ok, channel} ->
+      {:ok, topic} ->
         conn
         |> put_status(:created)
-        |> put_resp_header("location", channel_path(conn, :show, channel))
-        |> render("show.json", channel: channel)
+        |> put_resp_header("location", topic_path(conn, :show, topic))
+        |> render("show.json", topic: topic)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -25,17 +25,17 @@ defmodule SpectoPusher.ChannelController do
   end
 
   def show(conn, %{"id" => id}) do
-    channel = Repo.get!(Channel, id)
-    render(conn, "show.json", channel: channel)
+    topic = Repo.get!(Topic, id)
+    render(conn, "show.json", topic: topic)
   end
 
-  def update(conn, %{"id" => id, "channel" => channel_params}) do
-    channel = Repo.get!(Channel, id)
-    changeset = Channel.changeset(channel, channel_params)
+  def update(conn, %{"id" => id, "topic" => topic_params}) do
+    topic = Repo.get!(Topic, id)
+    changeset = Topic.changeset(topic, topic_params)
 
     case Repo.update(changeset) do
-      {:ok, channel} ->
-        render(conn, "show.json", channel: channel)
+      {:ok, topic} ->
+        render(conn, "show.json", topic: topic)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -44,11 +44,11 @@ defmodule SpectoPusher.ChannelController do
   end
 
   def delete(conn, %{"id" => id}) do
-    channel = Repo.get!(Channel, id)
+    topic = Repo.get!(Topic, id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
-    Repo.delete!(channel)
+    Repo.delete!(topic)
 
     send_resp(conn, :no_content, "")
   end

@@ -22,7 +22,7 @@ defmodule SpectoPusher.Router do
   # Other scopes may use custom stacks.
   scope "/api", SpectoPusher do
     pipe_through :api
-    resources "/channels", ChannelController, except: [:new, :edit]
+    resources "/topics", TopicController, except: [:new, :edit]
   end
 
   scope "/admin", ExAdmin do

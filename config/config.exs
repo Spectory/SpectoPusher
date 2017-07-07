@@ -28,7 +28,7 @@ config :ex_admin,
   module: SpectoPusher,
   modules: [
     SpectoPusher.ExAdmin.Dashboard,
-    SpectoPusher.ExAdmin.Channel,
+    SpectoPusher.ExAdmin.Topic,
   ]
 
 # Import environment specific config. This must remain at the bottom

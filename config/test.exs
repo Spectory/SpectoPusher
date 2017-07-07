@@ -12,4 +12,5 @@ config :logger, level: :warn
 # Configure your database
 config :specto_pusher, SpectoPusher.Repo,
   adapter: Sqlite.Ecto2,
-  database: "db/specto_pusher_test.sqlite3"
+  database: "db/specto_pusher_test.sqlite3",
+  pool: Ecto.Adapters.SQL.Sandbox
