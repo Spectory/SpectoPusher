@@ -69,7 +69,7 @@ chatInput.addEventListener("keypress", event => {
 
 
 function join(topic) {
-  channel = socket.channel(`room:${topic}`, {})
+  channel = socket.channel(topic, {})
   channel.join()
     .receive("ok", resp => { console.log("Joined successfully", resp) })
     .receive("error", resp => { console.log("Unable to join", resp) })
