@@ -1,7 +1,6 @@
-<button id="joinBtn">Join</button>
-<input id='topic' />
-<p id="demo"></p>
+<input id='topic' placeholder='topic name from db'/>
+<button id="joinBtn">Join Topic</button>
 
 
+<div>send msg</div><input id="chat-input" type="text"></input>
 <div id="messages"></div>
-<input id="chat-input" type="text"></input>
