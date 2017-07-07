@@ -16,4 +16,9 @@ defmodule SpectoPusher.Channel do
     |> validate_required([:name])
     |> unique_constraint(:name)
   end
+
+  def by_name(query, name) do
+    from c in query,
+    where: c.name == ^name
+  end
 end

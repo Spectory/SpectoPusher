@@ -1,2 +1,7 @@
+<button id="joinBtn">Join</button>
+<input id='topic' />
+<p id="demo"></p>
+
+
 <div id="messages"></div>
 <input id="chat-input" type="text"></input>
