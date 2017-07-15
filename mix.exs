@@ -4,7 +4,7 @@ defmodule SpectoPusher.Mixfile do
   def project do
     [app: :specto_pusher,
      version: "0.0.1",
-     elixir: "~> 1.2",
+     elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -26,6 +26,10 @@ defmodule SpectoPusher.Mixfile do
        :logger,
        :gettext,
        :phoenix_ecto,
+       :sqlite_ecto2,
+       :ex_admin,
+       :postgrex,
+       :sqlitex
       ]
     ]
   end
@@ -47,6 +51,9 @@ defmodule SpectoPusher.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:ex_admin, github: "smpallen99/ex_admin"},
+     {:postgrex, ">= 0.0.0"},
+     {:sqlitex, ">= 0.0.0"},
+     {:exrm, "~> 1.0.3"},
     ]
   end
 

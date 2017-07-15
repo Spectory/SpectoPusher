@@ -39,3 +39,46 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+
+#for docker setup
+install docker ce: use https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository instructions
+-sudo apt-get install docker-ce=17.06.0~ce-0~ubuntu
+
+docker pull phusion/baseimage
+
+dickerfile created using this tutorial:
+https://gist.github.com/brienw/85db445a0c3976d323b859b1cdccef9a
+
+build a new release:
+important!!! make sure you have config/prod.secret.exs file
+
+mix do deps.get, compile
+MIX_ENV=prod mix phoenix.digest
+MIX_ENV=prod mix compile
+MIX_ENV=prod mix release
+
+rel/specto_pusher/bin/specto_pusher console
+
+
+run docker:
+docker build -t specto_pusher .
+docker run -p 4000:4000 --name specto_pusher -d specto_pusher
+
+stop:
+docker stop specto_pusher
+
+clean up the container:
+docker rm specto_pusher
+
+see runnig docker container:
+docker ps
+
+
+
+---------------------------------
+after you've made changes to your application, to build your new Dockerized release, you'll only need to repeat the last few steps you went over:
+
+MIX_ENV=prod mix do phoenix.digest, compile, release
+
+docker build specto_pusher .
