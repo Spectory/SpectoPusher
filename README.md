@@ -45,6 +45,8 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 install docker ce: use https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository instructions
 -sudo apt-get install docker-ce=17.06.0~ce-0~ubuntu
 
+docker pull elixir
+
 docker pull phusion/baseimage
 
 dickerfile created using this tutorial:
@@ -52,6 +54,9 @@ https://gist.github.com/brienw/85db445a0c3976d323b859b1cdccef9a
 
 build a new release:
 important!!! make sure you have config/prod.secret.exs file
+if not you can create a new project and take the secret file from there
+mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+mix phoenix.new hello_phoenix 
 
 mix do deps.get, compile
 MIX_ENV=prod mix phoenix.digest

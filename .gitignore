@@ -8,6 +8,7 @@
 erl_crash.dump
 
 # Static artifacts
+/rel
 /node_modules
 
 # Since we are building assets from web/static,
