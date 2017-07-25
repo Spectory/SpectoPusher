@@ -64,4 +64,4 @@ config :specto_pusher, SpectoPusher.Repo,
   adapter: Sqlite.Ecto2,
   database: "specto_pusher_prod.sqlite3"
 
-import_config "prod.secret.exs"
+import_config "db/prod.secret.exs"

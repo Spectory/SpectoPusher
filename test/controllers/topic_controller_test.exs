@@ -1,7 +1,7 @@
-defmodule SpectoPusher.ChannelControllerTest do
+defmodule SpectoPusher.TopicControllerTest do
   use SpectoPusher.ConnCase
 
-  alias SpectoPusher.Channel
+  alias SpectoPusher.Topic
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 
@@ -10,51 +10,51 @@ defmodule SpectoPusher.ChannelControllerTest do
   end
 
   test "lists all entries on index", %{conn: conn} do
-    conn = get conn, channel_path(conn, :index)
+    conn = get conn, topic_path(conn, :index)
     assert json_response(conn, 200)["data"] == []
   end
 
   test "shows chosen resource", %{conn: conn} do
-    channel = Repo.insert! %Channel{}
-    conn = get conn, channel_path(conn, :show, channel)
-    assert json_response(conn, 200)["data"] == %{"id" => channel.id,
-      "name" => channel.name}
+    topic = Repo.insert! %Topic{}
+    conn = get conn, topic_path(conn, :show, topic)
+    assert json_response(conn, 200)["data"] == %{"id" => topic.id,
+      "name" => topic.name}
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
     assert_error_sent 404, fn ->
-      get conn, channel_path(conn, :show, -1)
+      get conn, topic_path(conn, :show, -1)
     end
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, channel_path(conn, :create), channel: @valid_attrs
+    conn = post conn, topic_path(conn, :create), topic: @valid_attrs
     assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(Channel, @valid_attrs)
+    assert Repo.get_by(Topic, @valid_attrs)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, channel_path(conn, :create), channel: @invalid_attrs
+    conn = post conn, topic_path(conn, :create), topic: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "updates and renders chosen resource when data is valid", %{conn: conn} do
-    channel = Repo.insert! %Channel{}
-    conn = put conn, channel_path(conn, :update, channel), channel: @valid_attrs
+    topic = Repo.insert! %Topic{}
+    conn = put conn, topic_path(conn, :update, topic), topic: @valid_attrs
     assert json_response(conn, 200)["data"]["id"]
-    assert Repo.get_by(Channel, @valid_attrs)
+    assert Repo.get_by(Topic, @valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    channel = Repo.insert! %Channel{}
-    conn = put conn, channel_path(conn, :update, channel), channel: @invalid_attrs
+    topic = Repo.insert! %Topic{}
+    conn = put conn, topic_path(conn, :update, topic), topic: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "deletes chosen resource", %{conn: conn} do
-    channel = Repo.insert! %Channel{}
-    conn = delete conn, channel_path(conn, :delete, channel)
+    topic = Repo.insert! %Topic{}
+    conn = delete conn, topic_path(conn, :delete, topic)
     assert response(conn, 204)
-    refute Repo.get(Channel, channel.id)
+    refute Repo.get(Topic, topic.id)
   end
 end

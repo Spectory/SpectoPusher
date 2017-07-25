@@ -1,7 +1,7 @@
-defmodule SpectoPusher.Channel do
+defmodule SpectoPusher.Topic do
   use SpectoPusher.Web, :model
 
-  schema "channels" do
+  schema "topics" do
     field :name, :string
 
     timestamps()
@@ -15,5 +15,10 @@ defmodule SpectoPusher.Channel do
     |> cast(params, [:name])
     |> validate_required([:name])
     |> unique_constraint(:name)
+  end
+
+  def by_name(query, name) do
+    from c in query,
+    where: c.name == ^name
   end
 end

@@ -36,4 +36,4 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :specto_pusher, SpectoPusher.Repo,
   adapter: Sqlite.Ecto2,
-  database: "specto_pusher_dev.sqlite3"
+  database: "db/specto_pusher_dev.sqlite3"

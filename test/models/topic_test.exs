@@ -1,18 +1,18 @@
-defmodule SpectoPusher.ChannelTest do
+defmodule SpectoPusher.TopicTest do
   use SpectoPusher.ModelCase
 
-  alias SpectoPusher.Channel
+  alias SpectoPusher.Topic
 
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    changeset = Channel.changeset(%Channel{}, @valid_attrs)
+    changeset = Topic.changeset(%Topic{}, @valid_attrs)
     assert changeset.valid?
   end
 
   test "changeset with invalid attributes" do
-    changeset = Channel.changeset(%Channel{}, @invalid_attrs)
+    changeset = Topic.changeset(%Topic{}, @invalid_attrs)
     refute changeset.valid?
   end
 end

@@ -1,8 +1,8 @@
-defmodule SpectoPusher.Repo.Migrations.CreateChannel do
+defmodule SpectoPusher.Repo.Migrations.CreateTopic do
   use Ecto.Migration
 
   def change do
-    create table(:channels) do
+    create table(:topics) do
       add :name, :string
 
       timestamps()
