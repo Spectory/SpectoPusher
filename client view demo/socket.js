@@ -16,7 +16,6 @@ function init() {
     join(socket, 'public:5');
 
     output = document.getElementById("output");
-    // testWebSocket();
 }
 
 var join = function (socket, topic) {
@@ -26,45 +25,21 @@ var join = function (socket, topic) {
         .receive("error", resp => { console.log("Unable to join", resp) })
 
     channel.on("new_msg", payload => {
-        debugger
         onMessage(payload.body);
-        // let messageItem = document.createElement("li");
-        // messageItem.innerText = `[${Date()}] ${payload.body}`
-        // messagesContainer.appendChild(messageItem)
     })
 }
-
-// function testWebSocket() {
-//     websocket = new WebSocket(wsUri);
-//     debugger
-//     websocket.onopen = function(evt) {
-//         onOpen(evt)
-//     };
-
-//     websocket.onmessage = function(evt) {
-//         onMessage(evt)
-//     };
-
-//     websocket.onerror = function(evt) {
-//         onError(evt)
-//     };
-// }
-
-// function onOpen(evt) {
-//     writeToScreen("CONNECTED");
-// }
 
 function onMessage(msg) {
     writeToScreen("RECIEVED: " + msg);
 }
 
-// function onError(evt) {
-//     writeToScreen("ERROR:");
-//     writeToScreen(evt.data);
-// }
-// function onClose(evt) {
-//     writeToScreen("DISCONNECTED");
-//  }
+function onError(evt) {
+    writeToScreen("ERROR:");
+    writeToScreen(evt.data);
+}
+function onClose(evt) {
+    writeToScreen("DISCONNECTED");
+ }
 
 function doSend() {
   var message = document.getElementById("comment").value
@@ -73,9 +48,9 @@ function doSend() {
     document.getElementById("comment").value = ''
 }
 
-// function closeSocket() {
-//     websocket.close();
-// }
+function closeSocket() {
+    socket.onClose();
+}
 
 function writeToScreen(message) {
     var pre = document.createElement("p");
