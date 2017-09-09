@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+    <h1>Open this page in 2 browers, and have a look at the console </h1>
+
+    <script src="../../core/lib/SpectoPusher.js"></script>
+
+    <script>
+        const params = {
+            url: 'ws://localhost:4000/socket',
+            debug: true,
+        }
+        window.SP = new SpectoPusher(params);
+        SP.connect()
+
+        const callbacks = {
+            onJoinSucc: (res) => { console.log('join succ', res) },
+            onJoinFail: (res) => { console.log('join fail', res) },
+            onMsg: (res) => { console.log('msg recived', res) },
+        }
+
+        const topic1 = 'public:1';
+        const topic2 = 'public:2';
+        SP.join(topic1, callbacks);
+        SP.join(topic2, callbacks);
+        console.log(`run 'SP.send(${topic1}, SOME_MSG)' to brodcast`);
+    </script>
+</body>
+
+</html>
