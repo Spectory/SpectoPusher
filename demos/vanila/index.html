@@ -18,12 +18,20 @@
             debug: true,
         }
         window.SP = new SpectoPusher(params);
-        SP.connect()
+        
+        const socketCallbaks = {
+            onOpen: ev => console.log("socket open", ev),
+            onError: ev => console.log("socket error", ev),
+            onClose: e => console.log("socket close", e),
+        };
+        SP.connect({}, socketCallbaks)
 
         const callbacks = {
             onJoinSucc: (res) => { console.log('join succ', res) },
             onJoinFail: (res) => { console.log('join fail', res) },
             onMsg: (res) => { console.log('msg recived', res) },
+            onError: ev => console.log("channel error", ev),
+            onClose: e => console.log("channel close", e),
         }
 
         const topic1 = 'public:1';

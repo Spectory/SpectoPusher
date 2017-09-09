@@ -100,12 +100,21 @@ var SpectoPusher = function () {
     this.socket = undefined;
     this.channels = {};
     this.debug = args['debug'];
-    this.log('SpectoPusher initilized');
+    this._log('SpectoPusher initilized');
   }
 
+  /* Private */
+
+  /*
+  * Prints msgs to console (if this.debug === true).
+  * @param msg:any - msg to be printed.
+  * @param level:string - log level to be used (debug/info/warn/error)
+  */
+
+
   _createClass(SpectoPusher, [{
-    key: 'log',
-    value: function log(msg) {
+    key: '_log',
+    value: function _log(msg) {
       var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'debug';
 
       if (!this.debug) {
@@ -114,40 +123,102 @@ var SpectoPusher = function () {
       console[level](msg);
     }
   }, {
+    key: '_doNothing',
+    value: function _doNothing() {}
+
+    /* Public */
+
+    /*
+    * Initilize and connects to a Phoniex.Socket.
+    * @param args:object - Connection parameters
+    * @param callbacks:object - callbacks collection for socket
+    */
+
+  }, {
     key: 'connect',
     value: function connect() {
-      this.log('SpectoPusher.connect: connecting ' + this.url);
-      this.socket = new Phoniex.Socket(this.URL, this.params);
+      var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+      this._log('SpectoPusher.connect: connecting ' + this.url);
+      this.socket = new Phoniex.Socket(this.URL, args);
+      this.socket.onOpen = callbacks['onOpen'];
+      this.socket.onError = callbacks['onError'];
+      this.socket.onClose = callbacks['onClose'];
+      console.log(this.socket);
       this.socket.connect();
     }
+
+    /*
+    * Joins to a channel.
+    * @param topic:string - topic name.
+    * @param callbacks:object - callbacks collection for created channel.
+    */
+
   }, {
     key: 'join',
     value: function join(topic) {
       var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-      this.log('SpectoPusher.join: joining topic ' + topic);
+      this._log('SpectoPusher.join: joining topic ' + topic);
       if (!callbacks['onJoinSucc']) {
-        this.log('onJoinSucc is undefined', 'warn');
-      }
+        this._log('SpectoPusher.join: onJoinSucc is undefined', 'warn');
+      };
       if (!callbacks['onJoinFail']) {
-        this.log('onJoinFail is undefined', 'warn');
-      }
+        this._log('SpectoPusher.join: onJoinFail is undefined', 'warn');
+      };
       if (!callbacks['onMsg']) {
-        this.log('onMsg is undefined', 'warn');
-      }
+        this._log('SpectoPusher.join: onMsg is undefined', 'warn');
+      };
+      if (!callbacks['onError']) {
+        this._log('SpectoPusher.join: onError is undefined', 'warn');
+      };
+      if (!callbacks['onClose']) {
+        this._log('SpectoPusher.join: onClose is undefined', 'warn');
+      };
 
       var channel = this.socket.channel(topic, {});
-      channel.join().receive("ok", callbacks['onJoinSucc']).receive("error", callbacks['onJoinFail']);
 
-      channel.on("new_msg", callbacks['onMsg']);
+      channel.onError = callbacks['onError'] || this._doNothing;
+      channel.onClose = callbacks['onClose'] || this._doNothing;
+
+      channel.join().receive('ok', callbacks['onJoinSucc'] || this._doNothing).receive('error', callbacks['onJoinFail'] || this._doNothing);
+
+      channel.on('new_msg', callbacks['onMsg'] || this._doNothing);
       this.channels[topic] = channel;
     }
+
+    /*
+    * Sends a msg on channel
+    * @param topic:string - channel name.
+    * @param msg:any - msg content.
+    */
+
   }, {
     key: 'send',
     value: function send(topic, msg) {
-      this.log('SpectoPusher.send: sending to ' + topic + ', ' + JSON.stringify(msg));
+      this._log('SpectoPusher.send: sending to ' + topic + ', ' + JSON.stringify(msg));
       var channel = this.channels[topic];
+
       channel.push('new_msg', { body: msg });
+    }
+
+    /*
+    * Leaves channel.
+    * @param topic:string - channel name.
+    * @param callbacks:object - callbacks collection
+    */
+
+  }, {
+    key: 'leave',
+    value: function leave(topic) {
+      var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+      if (!callbacks['onLeave']) {
+        this._log('SpectoPusher.leave: callbacks is undefined', 'warn');
+      };
+      this.channels[topic].leave().receive('ok', callbacks['onLeave'] || this._doNothing);
+      this.channels[topic] = undefined;
     }
   }]);
 
