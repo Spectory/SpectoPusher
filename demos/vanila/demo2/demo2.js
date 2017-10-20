@@ -6,9 +6,9 @@ $(document).ready(() => {
   window.SP = new SpectoPusher(params);
 
   const socketCallbacks = {
-    onOpen: ev => { changeSocketStatus(true) },
-    onError: ev => { changeSocketStatus(false) },
-    onClose: e => { changeSocketStatus(false) },
+    onOpen: ev => { changeSocketStatus('open') },
+    onError: ev => { changeSocketStatus('error') },
+    onClose: e => { changeSocketStatus('closed') },
   };
 
   SP.connect({}, socketCallbacks)
@@ -32,9 +32,9 @@ $(document).ready(() => {
     $(`#${channelId}_status`).html(`connected? ${status}`);
   };
   
-  const changeSocketStatus = (status) => $('socket_status').html(`socket open?: ${status}`);
+  const changeSocketStatus = (status) => $('#socket_status').html(`socket status?: ${status}`);
 
-  const addMsg = (channelId, msg) => $(`#${channelId}_msgs`).append(`<li>${msg}</li>`);
+  const addMsg = (channelId, msg) => $(`#${channelId}_msgs`).append(`<li class='new-msg'>${msg}</li>`);
 
   sendMsg = (topic) => {
     SP.send(topic, `Look! a random number: ${Math.random()}`);

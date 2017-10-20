@@ -88,7 +88,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Phoniex = __webpack_require__(1);
+var Phoenix = __webpack_require__(1);
 
 var SpectoPusher = function () {
   function SpectoPusher() {
@@ -100,7 +100,7 @@ var SpectoPusher = function () {
     this.socket = undefined;
     this.channels = {};
     this.debug = args['debug'];
-    this._log('SpectoPusher initilized');
+    this._log('SpectoPusher initialized');
   }
 
   /* Private */
@@ -129,7 +129,7 @@ var SpectoPusher = function () {
     /* Public */
 
     /*
-    * Initilize and connects to a Phoniex.Socket.
+    * Initialize and connects to a Phoenix.Socket.
     * @param args:object - Connection parameters
     * @param callbacks:object - callbacks collection for socket
     */
@@ -141,12 +141,12 @@ var SpectoPusher = function () {
       var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       this._log('SpectoPusher.connect: connecting ' + this.url);
-      this.socket = new Phoniex.Socket(this.URL, args);
-      this.socket.onOpen = callbacks['onOpen'];
-      this.socket.onError = callbacks['onError'];
-      this.socket.onClose = callbacks['onClose'];
-      console.log(this.socket);
+      this.socket = new Phoenix.Socket(this.URL, args);
+      console.log(callbacks);
       this.socket.connect();
+      this.socket.onOpen(callbacks['onOpen']);
+      this.socket.onError(callbacks['onError']);
+      this.socket.onClose(callbacks['onClose']);
     }
 
     /*
