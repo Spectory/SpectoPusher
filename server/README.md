@@ -87,3 +87,10 @@ after you've made changes to your application, to build your new Dockerized rele
 MIX_ENV=prod mix do phoenix.digest, compile, release
 
 docker build specto_pusher .
+
+
+for heroku:
+
+heroku create --buildpack "https://github.com/HashNuke/heroku-buildpack-elixir.git"
+
+heroku buildpacks:add https://github.com/gjaldon/heroku-buildpack-phoenix-static.git
