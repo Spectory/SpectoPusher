@@ -1,0 +1,7 @@
+.leader-board {
+  display: flex;
+  font-size: 35px;
+}
+.leader-board p{
+  padding: 0 10px;
+}
