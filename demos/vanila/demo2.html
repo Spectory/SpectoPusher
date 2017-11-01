@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="./demo2.css">
+</head>
+
+<body>
+    <ol>
+        <li>Make sure SpectoPusher server is running</li>
+        <li>Open this page in 2 browers, and have a look at the console</li>
+    </ol>
+
+    <div>
+      socket
+      <div id='socket_status'></div>
+    </div>
+
+    <section>
+      <div class='channel' id='channel_1'>
+        <h3>Channel 1</h3>
+        <div id='channel_1_status'>disconneted</div>
+        <ol id='channel_1_msgs'></ol>
+      </div>
+      
+      <div class='channel' id='channel_2'>
+        <h3>Channel 2</h3>
+        <div id='channel_2_status'>disconneted</div>
+        <ol id='channel_2_msgs'></ol>
+      </div>
+    </section>
+    
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous">
+    </script>
+    <script src="../../core/lib/SpectoPusher.js"></script>
+    <script src='demo2.js'></script>
+</body>
+
+</html>

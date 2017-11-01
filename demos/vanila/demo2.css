@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0 10px;
+  background: #e6e4e4;
+}
+section {
+  display: flex;
+}
+
+h3 {
+  text-align: center;
+}
+
+.channel {
+  width: 50%;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+  overflow: auto;
+  height: 750px;
+}
