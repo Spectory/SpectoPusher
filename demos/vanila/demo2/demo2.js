@@ -1,18 +1,35 @@
+/**
+ * @fileOverview
+ * A Demo of SpectoPush connection with multiple channels.
+ */
+
 $(document).ready(() => {
+  // Create a SpectoPusher instance.
   const params = {
     url: 'ws://localhost:4000/socket',
     debug: true,
   }
   window.SP = new SpectoPusher(params);
 
-  const socketCallbacks = {
+  // Define connection event handlers.
+  const changeSocketStatus = (status) => $('#socket_status').html(status);
+
+  const connectionCallbacks = {
     onOpen: ev => { changeSocketStatus('open') },
     onError: ev => { changeSocketStatus('error') },
     onClose: e => { changeSocketStatus('closed') },
   };
 
-  SP.connect({}, socketCallbacks)
+  // Connect.
+  SP.connect({}, connectionCallbacks)
 
+  // Define messages callbacks per channel.
+  const changeChannelStatus = (channelId, status) => {
+    $(`#${channelId}_status`).html(`connected? ${status}`);
+  };
+
+  const addMsg = (channelId, msg) => $(`#${channelId}_msgs`).append(`<li class='new-msg'>${msg}</li>`);
+  
   const callbacksFor = (channelId) => {
     return {
       onJoinSucc: (res) => { changeChannelStatus(channelId, true); },
@@ -23,19 +40,13 @@ $(document).ready(() => {
     }
   }
 
+  // Join public channels.
   const topic1 = 'public:1';
   const topic2 = 'public:2';
   SP.join(topic1, callbacksFor('channel_1'));
   SP.join(topic2, callbacksFor('channel_2'));
-
-  const changeChannelStatus = (channelId, status) => {
-    $(`#${channelId}_status`).html(`connected? ${status}`);
-  };
   
-  const changeSocketStatus = (status) => $('#socket_status').html(`socket status?: ${status}`);
-
-  const addMsg = (channelId, msg) => $(`#${channelId}_msgs`).append(`<li class='new-msg'>${msg}</li>`);
-
+  // Send messages at intervals.
   sendMsg = (topic) => {
     SP.send(topic, `Look! a random number: ${Math.random()}`);
   }

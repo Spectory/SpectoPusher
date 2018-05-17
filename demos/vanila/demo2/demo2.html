@@ -10,27 +10,27 @@
 <body>
     <ol>
         <li>Make sure SpectoPusher server is running</li>
-        <li>Open this page in 2 browers, and have a look at the console</li>
+        <li>Open this page in 2 browsers, and have a look at the console</li>
     </ol>
 
     <div>
-      <div id='socket_status'></div>
+      <span>Current SpectoPusher connection socket status:</span>
+      <b id='socket_status'>closed</b>
     </div>
 
     <section>
       <div class='channel' id='channel_1'>
         <h3>Channel 1</h3>
-        <div id='channel_1_status'>disconneted</div>
+        <div id='channel_1_status'>disconnected</div>
         <ol id='channel_1_msgs'></ol>
       </div>
       
       <div class='channel' id='channel_2'>
         <h3>Channel 2</h3>
-        <div id='channel_2_status'>disconneted</div>
+        <div id='channel_2_status'>disconnected</div>
         <ol id='channel_2_msgs'></ol>
       </div>
     </section>
-    
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
