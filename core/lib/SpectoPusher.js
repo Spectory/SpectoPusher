@@ -90,6 +90,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Phoenix = __webpack_require__(1);
 
+/**
+ * A wrapper around phoenix-socket module.
+ * Provides the core logic for connection and message passing with the
+ * SpectoPusher server.
+ */
+
 var SpectoPusher = function () {
   function SpectoPusher() {
     var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -100,21 +106,20 @@ var SpectoPusher = function () {
     this.socket = undefined;
     this.channels = {};
     this.debug = args['debug'];
-    this._log('SpectoPusher initialized');
+    this.log_('SpectoPusher initialized');
   }
 
-  /* Private */
-
-  /*
-  * Prints msgs to console (if this.debug === true).
-  * @param msg:any - msg to be printed.
-  * @param level:string - log level to be used (debug/info/warn/error)
-  */
+  /**
+   * Prints messages to console (if this.debug === true).
+   * @param {*} msg - Message to be printed.
+   * @param {string} level - Log level to be used (debug/info/warn/error)
+   * @private
+   */
 
 
   _createClass(SpectoPusher, [{
-    key: '_log',
-    value: function _log(msg) {
+    key: 'log_',
+    value: function log_(msg) {
       var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'debug';
 
       if (!this.debug) {
@@ -122,17 +127,20 @@ var SpectoPusher = function () {
       }
       console[level](msg);
     }
+
+    /**
+     * @private A function that performs no operations.
+     */
+
   }, {
-    key: '_doNothing',
-    value: function _doNothing() {}
+    key: 'noop_',
+    value: function noop_() {}
 
-    /* Public */
-
-    /*
-    * Initialize and connects to a Phoenix.Socket.
-    * @param args:object - Connection parameters
-    * @param callbacks:object - callbacks collection for socket
-    */
+    /**
+     * Initialize and connects to a Phoenix.Socket.
+     * @param {object} args - Connection parameters.
+     * @param {object} callbacks - Callbacks collection for socket.
+     */
 
   }, {
     key: 'connect',
@@ -140,7 +148,7 @@ var SpectoPusher = function () {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-      this._log('SpectoPusher.connect: connecting ' + this.url);
+      this.log_('SpectoPusher.connect: connecting ' + this.url);
       this.socket = new Phoenix.Socket(this.URL, args);
       console.log(callbacks);
       this.socket.connect();
@@ -149,65 +157,65 @@ var SpectoPusher = function () {
       this.socket.onClose(callbacks['onClose']);
     }
 
-    /*
-    * Joins to a channel.
-    * @param topic:string - topic name.
-    * @param callbacks:object - callbacks collection for created channel.
-    */
+    /**
+     * Joins to a channel.
+     * @param {string} topic - topic name.
+     * @param {object} callbacks - callbacks collection for created channel.
+     */
 
   }, {
     key: 'join',
     value: function join(topic) {
       var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-      this._log('SpectoPusher.join: joining topic ' + topic);
+      this.log_('SpectoPusher.join: joining topic ' + topic);
       if (!callbacks['onJoinSucc']) {
-        this._log('SpectoPusher.join: onJoinSucc is undefined', 'warn');
+        this.log_('SpectoPusher.join: onJoinSucc is undefined', 'warn');
       };
       if (!callbacks['onJoinFail']) {
-        this._log('SpectoPusher.join: onJoinFail is undefined', 'warn');
+        this.log_('SpectoPusher.join: onJoinFail is undefined', 'warn');
       };
       if (!callbacks['onMsg']) {
-        this._log('SpectoPusher.join: onMsg is undefined', 'warn');
+        this.log_('SpectoPusher.join: onMsg is undefined', 'warn');
       };
       if (!callbacks['onError']) {
-        this._log('SpectoPusher.join: onError is undefined', 'warn');
+        this.log_('SpectoPusher.join: onError is undefined', 'warn');
       };
       if (!callbacks['onClose']) {
-        this._log('SpectoPusher.join: onClose is undefined', 'warn');
+        this.log_('SpectoPusher.join: onClose is undefined', 'warn');
       };
 
       var channel = this.socket.channel(topic, {});
 
-      channel.onError = callbacks['onError'] || this._doNothing;
-      channel.onClose = callbacks['onClose'] || this._doNothing;
+      channel.onError = callbacks['onError'] || this.noop_;
+      channel.onClose = callbacks['onClose'] || this.noop_;
 
-      channel.join().receive('ok', callbacks['onJoinSucc'] || this._doNothing).receive('error', callbacks['onJoinFail'] || this._doNothing);
+      channel.join().receive('ok', callbacks['onJoinSucc'] || this.noop_).receive('error', callbacks['onJoinFail'] || this.noop_);
 
-      channel.on('new_msg', callbacks['onMsg'] || this._doNothing);
+      channel.on('new_msg', callbacks['onMsg'] || this.noop_);
       this.channels[topic] = channel;
     }
 
-    /*
-    * Sends a msg on channel
-    * @param topic:string - channel name.
-    * @param msg:any - msg content.
-    */
+    /**
+     * Sends a msg on channel
+     * @param {string} topic - channel name.
+     * @param {*} msg - msg content.
+     */
 
   }, {
     key: 'send',
     value: function send(topic, msg) {
-      this._log('SpectoPusher.send: sending to ' + topic + ', ' + JSON.stringify(msg));
+      this.log_('SpectoPusher.send: sending to ' + topic + ', ' + JSON.stringify(msg));
       var channel = this.channels[topic];
 
       channel.push('new_msg', { body: msg });
     }
 
-    /*
-    * Leaves channel.
-    * @param topic:string - channel name.
-    * @param callbacks:object - callbacks collection
-    */
+    /**
+     * Leaves channel.
+     * @param {string} topic - channel name.
+     * @param {object} callbacks - callbacks collection.
+     */
 
   }, {
     key: 'leave',
@@ -215,9 +223,9 @@ var SpectoPusher = function () {
       var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       if (!callbacks['onLeave']) {
-        this._log('SpectoPusher.leave: callbacks is undefined', 'warn');
+        this.log_('SpectoPusher.leave: callbacks is undefined', 'warn');
       };
-      this.channels[topic].leave().receive('ok', callbacks['onLeave'] || this._doNothing);
+      this.channels[topic].leave().receive('ok', callbacks['onLeave'] || this.noop_);
       this.channels[topic] = undefined;
     }
   }]);
