@@ -2,7 +2,7 @@
 
 SpectoPusher core module.
 
-Handles connection & msg passing between SpectoPusher server, and brower clients.
+Handles connection & msg passing between SpectoPusher server, and clients.
 
 ## API
 
@@ -11,7 +11,7 @@ Handles connection & msg passing between SpectoPusher server, and brower clients
 Params object:
 
 * url: string - URL of spectoPusher server socket endpoint.
-* debug: boolean - Show debug info
+* debug: boolean - Whether or not to show debug info.
 
 ### SP.connect()
 
@@ -25,7 +25,7 @@ Creates a channel to topic.
 * callbask : object
   * onJoinSucc(response) - triggered on successful join to a topic.
   * onJoinFail(response) - triggered on failed join to a topic.
-  * onMsg(response) - triggered on msg recieved on topic.
+  * onMsg(response) - triggered on msg received on topic.
 
 ### SP.send(topic: string, msg: any)
 
@@ -44,5 +44,6 @@ Sends a msg on topic channel.
 * `npm run test:watch` - same as above but in a watch mode
 
 ## Readings
+
 based on the work of [Start your own JavaScript library using webpack and ES6](http://krasimirtsonev.com/blog/article/javascript-library-starter-using-webpack-es6)
 
