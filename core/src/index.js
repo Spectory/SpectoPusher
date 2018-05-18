@@ -8,9 +8,9 @@ const Phoenix = require('phoenix-socket');
 export default class SpectoPusher {
   constructor(args = {}) {
     this.URL = args.url;
-    this.socket = undefined;
+    this.socket = null;
     this.channels = {};
-    this.debug = args['debug'];
+    this.debug = args.debug || false;
     this.log_('SpectoPusher initialized');
   }
 
@@ -32,17 +32,16 @@ export default class SpectoPusher {
 
  /**
   * Initialize and connects to a Phoenix.Socket.
-  * @param {object} args - Connection parameters.
+  * @param {object} args - Connection parameters passed to Phoenix socket.
   * @param {object} callbacks - Callbacks collection for socket.
   */
   connect(args = {}, callbacks = {}) {
     this.log_(`SpectoPusher.connect: connecting ${this.url}`);
     this.socket = new Phoenix.Socket(this.URL, args);
-    console.log(callbacks);
     this.socket.connect();
-    this.socket.onOpen(callbacks['onOpen']);
-    this.socket.onError(callbacks['onError']);
-    this.socket.onClose(callbacks['onClose']);
+    this.socket.onOpen(callbacks.onOpen);
+    this.socket.onError(callbacks.onError);
+    this.socket.onClose(callbacks.onClose);
   }
 
  /**
@@ -52,22 +51,21 @@ export default class SpectoPusher {
   */
   join(topic, callbacks = {}) {
     this.log_(`SpectoPusher.join: joining topic ${topic}`);
-    if (!callbacks['onJoinSucc']) { this.log_('SpectoPusher.join: onJoinSucc is undefined', 'warn'); };
-    if (!callbacks['onJoinFail']) { this.log_('SpectoPusher.join: onJoinFail is undefined', 'warn'); };
-    if (!callbacks['onMsg']) { this.log_('SpectoPusher.join: onMsg is undefined', 'warn'); };
-    if (!callbacks['onError']) { this.log_('SpectoPusher.join: onError is undefined', 'warn'); };
-    if (!callbacks['onClose']) { this.log_('SpectoPusher.join: onClose is undefined', 'warn'); };
-
+    if (!callbacks.onJoinSucc) { this.log_('SpectoPusher.join: onJoinSucc is undefined', 'warn'); };
+    if (!callbacks.onJoinFail) { this.log_('SpectoPusher.join: onJoinFail is undefined', 'warn'); };
+    if (!callbacks.onMsg) { this.log_('SpectoPusher.join: onMsg is undefined', 'warn'); };
+    if (!callbacks.onError) { this.log_('SpectoPusher.join: onError is undefined', 'warn'); };
+    if (!callbacks.onClose) { this.log_('SpectoPusher.join: onClose is undefined', 'warn'); };
     const channel = this.socket.channel(topic, {});
 
-    channel.onError = callbacks['onError'] || this.noop_;
-    channel.onClose = callbacks['onClose'] || this.noop_;
+    channel.onError = callbacks.onError || this.noop_;
+    channel.onClose = callbacks.onClose || this.noop_;
 
     channel.join()
-      .receive('ok', callbacks['onJoinSucc'] || this.noop_)
-      .receive('error', callbacks['onJoinFail'] || this.noop_);
+      .receive('ok', callbacks.onJoinSucc || this.noop_)
+      .receive('error', callbacks.onJoinFail || this.noop_);
 
-    channel.on('new_msg', callbacks['onMsg'] || this.noop_);
+    channel.on('new_msg', callbacks.onMsg || this.noop_);
     this.channels[topic] = channel;
   }
 
@@ -89,11 +87,11 @@ export default class SpectoPusher {
   * @param {object} callbacks - callbacks collection.
   */
   leave(topic, callbacks = {}) {
-    if (!callbacks['onLeave']) {
+    if (!callbacks.onLeave) {
       this.log_('SpectoPusher.leave: callbacks is undefined', 'warn');
     };
     this.channels[topic].leave()
-      .receive('ok', callbacks['onLeave'] || this.noop_);
+      .receive('ok', callbacks.onLeave || this.noop_);
     this.channels[topic] = undefined;
   }
 }
