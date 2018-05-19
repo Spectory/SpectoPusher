@@ -2,7 +2,7 @@ defmodule Coyote.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "*", Coyote.GenericChannel
+  channel "*", Coyote.UserChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
