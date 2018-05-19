@@ -9,7 +9,7 @@ defmodule Coyote.GenericChannel do
       _ -> {:ok, %{msg: "welcome to public:#{name}"}, socket}
     end
   end
-  
+
   def join(name, _params, socket) do
     # TODO: we can keep topics in memory instead of searching the DB on every join request. should be much faster.
     topic = Topic
@@ -24,13 +24,9 @@ defmodule Coyote.GenericChannel do
   # broadcast!/3 will notify all joined clients on this
   # socket's topic and invoke their handle_out/3 callbacks
   def handle_in("new_msg", %{"body" => body}, socket) do
-      broadcast! socket, "new_msg", %{body: body}
+      broadcast_from! socket, "new_msg", %{body: body}
       {:noreply, socket}
   end
 
-  def handle_out("new_msg", payload, socket) do
-      #here we can decide which messages to pass to all listeners 
-      push socket, "new_msg", payload
-      {:noreply, socket}
-  end
+  # TODO: Add and event that use `broadcast` instead of broadcast all.
 end
