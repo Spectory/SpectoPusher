@@ -60,19 +60,19 @@ describe('SpectoPusher', () => {
 
       subject.join('topic', {onMsg});
       expect(subject.channels.topic).to.be.ok;
-      expect(subject.channels.topic.on.calledWith('new_msg', onMsg))
+      expect(subject.channels.topic.on.calledWith('broadcast', onMsg))
           .to.equal(true);
     });
   });
 
-  describe('send', () => {
+  describe('broadcast', () => {
     it('should push message to channel', () => {
       const push = sinon.spy();
       subject.channels.someTopic = {push};
 
-      subject.send('someTopic', 'some message');
+      subject.broadcast('someTopic', 'some message');
       expect(subject.channels.someTopic.push
-          .calledWith('new_msg', {body: 'some message'})).to.equal(true);
+          .calledWith('broadcast', {body: 'some message'})).to.equal(true);
     });
   });
 
