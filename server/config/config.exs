@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :specto_pusher,
-  ecto_repos: [SpectoPusher.Repo]
+config :coyote,
+  ecto_repos: [Coyote.Repo]
 
 # Configures the endpoint
-config :specto_pusher, SpectoPusher.Endpoint,
+config :coyote, Coyote.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "HgTCOwl642x3g+hXp540EzVFDIcXd/eLKdHZeACbybEbnJdy/JN49Y7NgLz/9CSL",
-  render_errors: [view: SpectoPusher.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: SpectoPusher.PubSub,
+  render_errors: [view: Coyote.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Coyote.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
@@ -24,11 +24,11 @@ config :logger, :console,
 
 
 config :ex_admin,
-  repo: SpectoPusher.Repo,
-  module: SpectoPusher,
+  repo: Coyote.Repo,
+  module: Coyote,
   modules: [
-    SpectoPusher.ExAdmin.Dashboard,
-    SpectoPusher.ExAdmin.Topic,
+    Coyote.ExAdmin.Dashboard,
+    Coyote.ExAdmin.Topic,
   ]
 
 # Import environment specific config. This must remain at the bottom
@@ -36,4 +36,3 @@ config :ex_admin,
 import_config "#{Mix.env}.exs"
 
 config :xain, :after_callback, {Phoenix.HTML, :raw}
-

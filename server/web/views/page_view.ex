@@ -1,3 +1,3 @@
-defmodule SpectoPusher.PageView do
-  use SpectoPusher.Web, :view
+defmodule Coyote.PageView do
+  use Coyote.Web, :view
 end

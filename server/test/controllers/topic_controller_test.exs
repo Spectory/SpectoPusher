@@ -1,7 +1,7 @@
-defmodule SpectoPusher.TopicControllerTest do
-  use SpectoPusher.ConnCase
+defmodule Coyote.TopicControllerTest do
+  use Coyote.ConnCase
 
-  alias SpectoPusher.Topic
+  alias Coyote.Topic
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 

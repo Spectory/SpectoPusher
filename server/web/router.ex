@@ -1,5 +1,5 @@
-defmodule SpectoPusher.Router do
-  use SpectoPusher.Web, :router
+defmodule Coyote.Router do
+  use Coyote.Web, :router
   use ExAdmin.Router
 
   pipeline :browser do
@@ -14,13 +14,13 @@ defmodule SpectoPusher.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", SpectoPusher do
+  scope "/", Coyote do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  scope "/api", SpectoPusher do
+  scope "/api", Coyote do
     pipe_through :api
     resources "/topics", TopicController, except: [:new, :edit]
   end

@@ -1,4 +1,4 @@
 ExUnit.start
 
-Ecto.Adapters.SQL.Sandbox.mode(SpectoPusher.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Coyote.Repo, :manual)
 

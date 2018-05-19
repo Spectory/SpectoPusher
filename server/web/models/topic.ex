@@ -1,5 +1,5 @@
-defmodule SpectoPusher.Topic do
-  use SpectoPusher.Web, :model
+defmodule Coyote.Topic do
+  use Coyote.Web, :model
 
   schema "topics" do
     field :name, :string

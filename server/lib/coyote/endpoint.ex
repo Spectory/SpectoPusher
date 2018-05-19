@@ -1,14 +1,14 @@
-defmodule SpectoPusher.Endpoint do
-  use Phoenix.Endpoint, otp_app: :specto_pusher
+defmodule Coyote.Endpoint do
+  use Phoenix.Endpoint, otp_app: :coyote
 
-  socket "/socket", SpectoPusher.UserSocket
+  socket "/socket", Coyote.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :specto_pusher, gzip: false,
+    at: "/", from: :coyote, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -35,8 +35,8 @@ defmodule SpectoPusher.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_specto_pusher_key",
+    key: "_coyote_key",
     signing_salt: "4IaptaUm"
 
-  plug SpectoPusher.Router
+  plug Coyote.Router
 end

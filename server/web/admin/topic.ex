@@ -1,7 +1,7 @@
-defmodule SpectoPusher.ExAdmin.Topic do
+defmodule Coyote.ExAdmin.Topic do
   use ExAdmin.Register
 
-  register_resource SpectoPusher.Topic do
+  register_resource Coyote.Topic do
 
   end
 end

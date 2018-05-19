@@ -1,12 +1,12 @@
-defmodule SpectoPusher.Web do
+defmodule Coyote.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use SpectoPusher.Web, :controller
-      use SpectoPusher.Web, :view
+      use Coyote.Web, :controller
+      use Coyote.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -30,12 +30,12 @@ defmodule SpectoPusher.Web do
     quote do
       use Phoenix.Controller
 
-      alias SpectoPusher.Repo
+      alias Coyote.Repo
       import Ecto
       import Ecto.Query
 
-      import SpectoPusher.Router.Helpers
-      import SpectoPusher.Gettext
+      import Coyote.Router.Helpers
+      import Coyote.Gettext
     end
   end
 
@@ -49,9 +49,9 @@ defmodule SpectoPusher.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import SpectoPusher.Router.Helpers
-      import SpectoPusher.ErrorHelpers
-      import SpectoPusher.Gettext
+      import Coyote.Router.Helpers
+      import Coyote.ErrorHelpers
+      import Coyote.Gettext
     end
   end
 
@@ -65,10 +65,10 @@ defmodule SpectoPusher.Web do
     quote do
       use Phoenix.Channel
 
-      alias SpectoPusher.Repo
+      alias Coyote.Repo
       import Ecto
       import Ecto.Query
-      import SpectoPusher.Gettext
+      import Coyote.Gettext
     end
   end
 

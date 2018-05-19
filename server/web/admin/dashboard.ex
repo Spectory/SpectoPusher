@@ -1,4 +1,4 @@
-defmodule SpectoPusher.ExAdmin.Dashboard do
+defmodule Coyote.ExAdmin.Dashboard do
   use ExAdmin.Register
 
   register_page "Dashboard" do

@@ -1,5 +1,5 @@
-defmodule SpectoPusher.PageController do
-  use SpectoPusher.Web, :controller
+defmodule Coyote.PageController do
+  use Coyote.Web, :controller
 
   def index(conn, _params) do
     render conn, "index.html"

@@ -1,4 +1,4 @@
-defmodule SpectoPusher.ChannelCase do
+defmodule Coyote.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -20,22 +20,22 @@ defmodule SpectoPusher.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
-      alias SpectoPusher.Repo
+      alias Coyote.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
 
 
       # The default endpoint for testing
-      @endpoint SpectoPusher.Endpoint
+      @endpoint Coyote.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(SpectoPusher.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Coyote.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(SpectoPusher.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Coyote.Repo, {:shared, self()})
     end
 
     :ok
