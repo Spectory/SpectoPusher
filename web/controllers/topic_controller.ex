@@ -1,7 +1,7 @@
-defmodule SpectoPusher.TopicController do
-  use SpectoPusher.Web, :controller
+defmodule Coyote.TopicController do
+  use Coyote.Web, :controller
 
-  alias SpectoPusher.Topic
+  alias Coyote.Topic
 
   def index(conn, _params) do
     topics = Repo.all(Topic)
@@ -20,7 +20,7 @@ defmodule SpectoPusher.TopicController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(SpectoPusher.ChangesetView, "error.json", changeset: changeset)
+        |> render(Coyote.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
@@ -39,7 +39,7 @@ defmodule SpectoPusher.TopicController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(SpectoPusher.ChangesetView, "error.json", changeset: changeset)
+        |> render(Coyote.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

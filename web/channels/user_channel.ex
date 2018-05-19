@@ -1,7 +1,7 @@
-defmodule SpectoPusher.GenericChannel do
+defmodule Coyote.GenericChannel do
   use Phoenix.Channel
-  alias SpectoPusher.Topic
-  alias SpectoPusher.Repo
+  alias Coyote.Topic
+  alias Coyote.Repo
 
   def join("public:" <> name, _params, socket) do
     case String.trim(name) do

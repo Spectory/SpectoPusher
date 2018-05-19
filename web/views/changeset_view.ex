@@ -1,11 +1,11 @@
-defmodule SpectoPusher.ChangesetView do
-  use SpectoPusher.Web, :view
+defmodule Coyote.ChangesetView do
+  use Coyote.Web, :view
 
   @doc """
   Traverses and translates changeset errors.
 
   See `Ecto.Changeset.traverse_errors/2` and
-  `SpectoPusher.ErrorHelpers.translate_error/1` for more details.
+  `Coyote.ErrorHelpers.translate_error/1` for more details.
   """
   def translate_errors(changeset) do
     Ecto.Changeset.traverse_errors(changeset, &translate_error/1)

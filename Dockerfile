@@ -92,11 +92,11 @@ EXPOSE $MIX_HOST
 
 RUN mkdir /app
 WORKDIR /app
-COPY ./rel/specto_pusher/releases/$VERSION/specto_pusher.tar.gz /app/specto_pusher.tar.gz
-RUN tar -zxvf specto_pusher.tar.gz
+COPY ./rel/coyote/releases/$VERSION/coyote.tar.gz /app/coyote.tar.gz
+RUN tar -zxvf coyote.tar.gz
 
 
 WORKDIR /app/releases/$VERSION
-ENTRYPOINT ["./specto_pusher.sh"]
+ENTRYPOINT ["./coyote.sh"]
 CMD ["foreground"]
 # Start up in 'foreground' mode by default so the container stays running

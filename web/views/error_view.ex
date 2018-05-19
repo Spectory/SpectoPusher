@@ -1,5 +1,5 @@
-defmodule SpectoPusher.ErrorView do
-  use SpectoPusher.Web, :view
+defmodule Coyote.ErrorView do
+  use Coyote.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

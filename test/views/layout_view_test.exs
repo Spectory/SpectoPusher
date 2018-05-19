@@ -1,3 +1,3 @@
-defmodule SpectoPusher.LayoutViewTest do
-  use SpectoPusher.ConnCase, async: true
+defmodule Coyote.LayoutViewTest do
+  use Coyote.ConnCase, async: true
 end

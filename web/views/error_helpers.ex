@@ -1,4 +1,4 @@
-defmodule SpectoPusher.ErrorHelpers do
+defmodule Coyote.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule SpectoPusher.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(SpectoPusher.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(Coyote.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(SpectoPusher.Gettext, "errors", msg, opts)
+      Gettext.dgettext(Coyote.Gettext, "errors", msg, opts)
     end
   end
 end

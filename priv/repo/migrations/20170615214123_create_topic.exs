@@ -1,4 +1,4 @@
-defmodule SpectoPusher.Repo.Migrations.CreateTopic do
+defmodule Coyote.Repo.Migrations.CreateTopic do
   use Ecto.Migration
 
   def change do

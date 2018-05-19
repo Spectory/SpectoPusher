@@ -1,5 +1,5 @@
-defmodule SpectoPusher.PageControllerTest do
-  use SpectoPusher.ConnCase
+defmodule Coyote.PageControllerTest do
+  use Coyote.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

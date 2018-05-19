@@ -1,4 +1,4 @@
-# SpectoPusher
+# Coyote Server
 
 ### Dev setup
 
@@ -56,25 +56,25 @@ build a new release:
 important!!! make sure you have config/prod.secret.exs file
 if not you can create a new project and take the secret file from there
 mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
-mix phoenix.new hello_phoenix 
+mix phoenix.new hello_phoenix
 
 mix do deps.get, compile
 MIX_ENV=prod mix phoenix.digest
 MIX_ENV=prod mix compile
 MIX_ENV=prod mix release
 
-rel/specto_pusher/bin/specto_pusher console
+rel/coyote/bin/coyote console
 
 
 run docker:
-docker build -t specto_pusher .
-docker run -p 4000:4000 --name specto_pusher -d specto_pusher
+docker build -t coyote .
+docker run -p 4000:4000 --name coyote -d coyote
 
 stop:
-docker stop specto_pusher
+docker stop coyote
 
 clean up the container:
-docker rm specto_pusher
+docker rm coyote
 
 see runnig docker container:
 docker ps
@@ -86,4 +86,4 @@ after you've made changes to your application, to build your new Dockerized rele
 
 MIX_ENV=prod mix do phoenix.digest, compile, release
 
-docker build specto_pusher .
+docker build coyote .

@@ -1,8 +1,8 @@
-defmodule SpectoPusher.Mixfile do
+defmodule Coyote.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :specto_pusher,
+    [app: :coyote,
      version: "0.0.1",
      elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -17,7 +17,7 @@ defmodule SpectoPusher.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {SpectoPusher, []},
+    [mod: {Coyote, []},
      applications: [
        :phoenix,
        :phoenix_pubsub,

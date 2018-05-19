@@ -1,8 +1,8 @@
-defmodule SpectoPusher.UserSocket do
+defmodule Coyote.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "*", SpectoPusher.GenericChannel
+  channel "*", Coyote.GenericChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -30,7 +30,7 @@ defmodule SpectoPusher.UserSocket do
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:
   #
-  #     SpectoPusher.Endpoint.broadcast("users_socket:#{user.id}", "disconnect", %{})
+  #     Coyote.Endpoint.broadcast("users_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
   def id(_socket), do: nil

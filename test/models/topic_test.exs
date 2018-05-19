@@ -1,7 +1,7 @@
-defmodule SpectoPusher.TopicTest do
-  use SpectoPusher.ModelCase
+defmodule Coyote.TopicTest do
+  use Coyote.ModelCase
 
-  alias SpectoPusher.Topic
+  alias Coyote.Topic
 
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}

@@ -1,4 +1,4 @@
-defmodule SpectoPusher.ConnCase do
+defmodule Coyote.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,23 +20,23 @@ defmodule SpectoPusher.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias SpectoPusher.Repo
+      alias Coyote.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
 
-      import SpectoPusher.Router.Helpers
+      import Coyote.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint SpectoPusher.Endpoint
+      @endpoint Coyote.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(SpectoPusher.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Coyote.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(SpectoPusher.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Coyote.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

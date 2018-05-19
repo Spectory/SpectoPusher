@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :specto_pusher, SpectoPusher.Endpoint,
+config :coyote, Coyote.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -16,7 +16,7 @@ config :specto_pusher, SpectoPusher.Endpoint,
 
 
 # Watch static and templates for browser reloading.
-config :specto_pusher, SpectoPusher.Endpoint,
+config :coyote, Coyote.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
@@ -34,6 +34,6 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :specto_pusher, SpectoPusher.Repo,
+config :coyote, Coyote.Repo,
   adapter: Sqlite.Ecto2,
-  database: "db/specto_pusher_dev.sqlite3"
+  database: "db/coyote_dev.sqlite3"
