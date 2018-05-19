@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define("SpectoPusher", [], factory);
+		define("Coyote", [], factory);
 	else if(typeof exports === 'object')
-		exports["SpectoPusher"] = factory();
+		exports["Coyote"] = factory();
 	else
-		root["SpectoPusher"] = factory();
+		root["Coyote"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -93,20 +93,20 @@ var Phoenix = __webpack_require__(1);
 /**
  * A wrapper around phoenix-socket module.
  * Provides the core logic for connection and message passing with the
- * SpectoPusher server.
+ * Coyote server.
  */
 
-var SpectoPusher = function () {
-  function SpectoPusher() {
+var Coyote = function () {
+  function Coyote() {
     var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    _classCallCheck(this, SpectoPusher);
+    _classCallCheck(this, Coyote);
 
     this.URL = args.url;
     this.socket = null;
     this.channels = {};
     this.debug = args.debug || false;
-    this.log_('SpectoPusher initialized');
+    this.log_('Coyote initialized');
   }
 
   /**
@@ -117,7 +117,7 @@ var SpectoPusher = function () {
    */
 
 
-  _createClass(SpectoPusher, [{
+  _createClass(Coyote, [{
     key: 'log_',
     value: function log_(msg) {
       var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'debug';
@@ -148,7 +148,7 @@ var SpectoPusher = function () {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-      this.log_('SpectoPusher.connect: connecting ' + this.url);
+      this.log_('Coyote.connect: connecting ' + this.url);
       this.socket = new Phoenix.Socket(this.URL, args);
       this.socket.connect();
       this.socket.onOpen(callbacks.onOpen);
@@ -167,23 +167,22 @@ var SpectoPusher = function () {
     value: function join(topic) {
       var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-      this.log_('SpectoPusher.join: joining topic ' + topic);
+      this.log_('Coyote.join: joining topic ' + topic);
       if (!callbacks.onJoinSucc) {
-        this.log_('SpectoPusher.join: onJoinSucc is undefined', 'warn');
+        this.log_('Coyote.join: onJoinSucc is undefined', 'warn');
       };
       if (!callbacks.onJoinFail) {
-        this.log_('SpectoPusher.join: onJoinFail is undefined', 'warn');
+        this.log_('Coyote.join: onJoinFail is undefined', 'warn');
       };
       if (!callbacks.onMsg) {
-        this.log_('SpectoPusher.join: onMsg is undefined', 'warn');
+        this.log_('Coyote.join: onMsg is undefined', 'warn');
       };
       if (!callbacks.onError) {
-        this.log_('SpectoPusher.join: onError is undefined', 'warn');
+        this.log_('Coyote.join: onError is undefined', 'warn');
       };
       if (!callbacks.onClose) {
-        this.log_('SpectoPusher.join: onClose is undefined', 'warn');
+        this.log_('Coyote.join: onClose is undefined', 'warn');
       };
-
       var channel = this.socket.channel(topic, {});
 
       channel.onError = callbacks.onError || this.noop_;
@@ -191,7 +190,7 @@ var SpectoPusher = function () {
 
       channel.join().receive('ok', callbacks.onJoinSucc || this.noop_).receive('error', callbacks.onJoinFail || this.noop_);
 
-      channel.on('new_msg', callbacks.onMsg || this.noop_);
+      channel.on('broadcast', callbacks.onMsg || this.noop_);
       this.channels[topic] = channel;
     }
 
@@ -202,12 +201,12 @@ var SpectoPusher = function () {
      */
 
   }, {
-    key: 'send',
-    value: function send(topic, msg) {
-      this.log_('SpectoPusher.send: sending to ' + topic + ', ' + JSON.stringify(msg));
+    key: 'broadcast',
+    value: function broadcast(topic, msg) {
+      this.log_('Coyote.broadcast: ' + topic + ', ' + JSON.stringify(msg));
       var channel = this.channels[topic];
 
-      channel.push('new_msg', { body: msg });
+      channel.push('broadcast', { body: msg });
     }
 
     /**
@@ -222,17 +221,17 @@ var SpectoPusher = function () {
       var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       if (!callbacks.onLeave) {
-        this.log_('SpectoPusher.leave: callbacks is undefined', 'warn');
+        this.log_('Coyote.leave: callbacks is undefined', 'warn');
       };
       this.channels[topic].leave().receive('ok', callbacks.onLeave || this.noop_);
       this.channels[topic] = undefined;
     }
   }]);
 
-  return SpectoPusher;
+  return Coyote;
 }();
 
-exports.default = SpectoPusher;
+exports.default = Coyote;
 module.exports = exports['default'];
 
 /***/ }),
@@ -1508,4 +1507,4 @@ var Timer = function () {
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=SpectoPusher.js.map
+//# sourceMappingURL=Coyote.js.map

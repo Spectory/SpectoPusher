@@ -7,12 +7,12 @@ $(document).ready(() => {
   const userId = Math.floor(Math.random() * 10000);
   $(`#userId`).html(`I'm user  ${userId}`);
 
-  // Create a SpectoPusher instance.
+  // Create a Coyote instance.
   const params = {
     url: 'ws://localhost:4000/socket',
     debug: true,
   }
-  window.SP = new SpectoPusher(params);
+  window.Coyote = new Coyote(params);
 
   // Define connection event handlers.
   const changeSocketStatus = (status) => $('#socket_status').html(status);
@@ -24,7 +24,7 @@ $(document).ready(() => {
   };
 
   // Connect.
-  SP.connect({}, connectionCallbacks)
+  Coyote.connect({}, connectionCallbacks)
 
   // Define messages callbacks per channel.
   const changeChannelStatus = (channelId, status) => {
@@ -46,12 +46,12 @@ $(document).ready(() => {
   // Join public channels.
   const topic1 = 'public:1';
   const topic2 = 'public:2';
-  SP.join(topic1, callbacksFor('channel_1'));
-  SP.join(topic2, callbacksFor('channel_2'));
+  Coyote.join(topic1, callbacksFor('channel_1'));
+  Coyote.join(topic2, callbacksFor('channel_2'));
 
-  // Send messages at intervals.
+  // Broadcasts messages at intervals.
   sendMsg = (topic) => {
-    SP.send(topic, `${userId} Says: Look! a random number: ${Math.random()}`);
+    Coyote.broadcast(topic, `${userId} Says: Look! a random number: ${Math.random()}`);
   }
 
   setInterval(sendMsg, 3000, topic1);

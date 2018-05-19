@@ -3,15 +3,15 @@ const Phoenix = require('phoenix-socket');
 /**
  * A wrapper around phoenix-socket module.
  * Provides the core logic for connection and message passing with the
- * SpectoPusher server.
+ * Coyote server.
  */
-export default class SpectoPusher {
+export default class Coyote {
   constructor(args = {}) {
     this.URL = args.url;
     this.socket = null;
     this.channels = {};
     this.debug = args.debug || false;
-    this.log_('SpectoPusher initialized');
+    this.log_('Coyote initialized');
   }
 
  /**
@@ -36,7 +36,7 @@ export default class SpectoPusher {
   * @param {object} callbacks - Callbacks collection for socket.
   */
   connect(args = {}, callbacks = {}) {
-    this.log_(`SpectoPusher.connect: connecting ${this.url}`);
+    this.log_(`Coyote.connect: connecting ${this.url}`);
     this.socket = new Phoenix.Socket(this.URL, args);
     this.socket.connect();
     this.socket.onOpen(callbacks.onOpen);
@@ -50,12 +50,12 @@ export default class SpectoPusher {
   * @param {object} callbacks - callbacks collection for created channel.
   */
   join(topic, callbacks = {}) {
-    this.log_(`SpectoPusher.join: joining topic ${topic}`);
-    if (!callbacks.onJoinSucc) { this.log_('SpectoPusher.join: onJoinSucc is undefined', 'warn'); };
-    if (!callbacks.onJoinFail) { this.log_('SpectoPusher.join: onJoinFail is undefined', 'warn'); };
-    if (!callbacks.onMsg) { this.log_('SpectoPusher.join: onMsg is undefined', 'warn'); };
-    if (!callbacks.onError) { this.log_('SpectoPusher.join: onError is undefined', 'warn'); };
-    if (!callbacks.onClose) { this.log_('SpectoPusher.join: onClose is undefined', 'warn'); };
+    this.log_(`Coyote.join: joining topic ${topic}`);
+    if (!callbacks.onJoinSucc) { this.log_('Coyote.join: onJoinSucc is undefined', 'warn'); };
+    if (!callbacks.onJoinFail) { this.log_('Coyote.join: onJoinFail is undefined', 'warn'); };
+    if (!callbacks.onMsg) { this.log_('Coyote.join: onMsg is undefined', 'warn'); };
+    if (!callbacks.onError) { this.log_('Coyote.join: onError is undefined', 'warn'); };
+    if (!callbacks.onClose) { this.log_('Coyote.join: onClose is undefined', 'warn'); };
     const channel = this.socket.channel(topic, {});
 
     channel.onError = callbacks.onError || this.noop_;
@@ -65,7 +65,7 @@ export default class SpectoPusher {
       .receive('ok', callbacks.onJoinSucc || this.noop_)
       .receive('error', callbacks.onJoinFail || this.noop_);
 
-    channel.on('new_msg', callbacks.onMsg || this.noop_);
+    channel.on('broadcast', callbacks.onMsg || this.noop_);
     this.channels[topic] = channel;
   }
 
@@ -74,11 +74,11 @@ export default class SpectoPusher {
   * @param {string} topic - channel name.
   * @param {*} msg - msg content.
   */
-  send(topic, msg) {
-    this.log_(`SpectoPusher.send: sending to ${topic}, ${JSON.stringify(msg)}`);
+  broadcast(topic, msg) {
+    this.log_(`Coyote.broadcast: ${topic}, ${JSON.stringify(msg)}`);
     const channel = this.channels[topic];
 
-    channel.push('new_msg', {body: msg});
+    channel.push('broadcast', {body: msg});
   }
 
  /**
@@ -88,7 +88,7 @@ export default class SpectoPusher {
   */
   leave(topic, callbacks = {}) {
     if (!callbacks.onLeave) {
-      this.log_('SpectoPusher.leave: callbacks is undefined', 'warn');
+      this.log_('Coyote.leave: callbacks is undefined', 'warn');
     };
     this.channels[topic].leave()
       .receive('ok', callbacks.onLeave || this.noop_);

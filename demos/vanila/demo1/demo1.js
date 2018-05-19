@@ -1,15 +1,15 @@
 /**
  * @fileOverview
- * A basic example of SpectoPusher connection to a public channel, and message
+ * A basic example of Coyote connection to a public channel, and message
  * broadcasting.
  */
 
-// Create a SpectoPusher instance.
+// Create a Coyote instance.
 const params = {
   url: 'ws://localhost:4000/socket',
   debug: true,
 }
-window.SP = new SpectoPusher(params);
+window.Coyote = new Coyote(params);
 
 // Define connection event handlers.
 const connectionCallbacks = {
@@ -19,7 +19,7 @@ const connectionCallbacks = {
 };
 
 // Connect.
-SP.connect({}, connectionCallbacks)
+Coyote.connect({}, connectionCallbacks)
 
 // Define messages callbacks.
 const messageCallbacks = {
@@ -33,8 +33,8 @@ const messageCallbacks = {
 // Join public channels.
 const topic1 = 'public:1';
 const topic2 = 'public:2';
-SP.join(topic1, messageCallbacks);
-SP.join(topic2, messageCallbacks);
+Coyote.join(topic1, messageCallbacks);
+Coyote.join(topic2, messageCallbacks);
 
-// SP.send(<CHANNEL>, <MESSAGE>) to broadcast.
-console.log(`run 'SP.send(${topic1}, SOME_MSG)' to broadcast`);
+// Coyote.broadcast(<CHANNEL>, <MESSAGE>) to broadcast.
+console.log(`run 'Coyote.broadcast(${topic1}, SOME_MSG)' to broadcast`);
