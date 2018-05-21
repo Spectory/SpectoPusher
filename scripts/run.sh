@@ -8,3 +8,4 @@ cd ..
 cd server
 rm -rf _build
 mix phoenix.server
+cd ..

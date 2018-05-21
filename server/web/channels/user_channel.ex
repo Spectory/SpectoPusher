@@ -1,5 +1,7 @@
 defmodule Coyote.UserChannel do
+  use Coyote.Constants
   use Phoenix.Channel
+  alias Coyote.Cache
   alias Coyote.Topic
   alias Coyote.Repo
 
@@ -15,20 +17,22 @@ defmodule Coyote.UserChannel do
   end
 
   @doc """
-  Subscribe to a private topic by a given name. Name is validated aginst DB.
+  Subscribe to a private topic by a given name. Name is validated aginst cache,
+  and fall back to Topics DB table.
   Returns:
   - {:ok, welcome_message} when topic is valid.
   - {:error, reason} when topic is invalid.
   """
   def join(name, _params, socket) do
-    # TODO: we can keep topics in memory instead of searching the DB on every
-    # join request. should be much faster.
-    topic = Topic
-      |> Topic.by_name(String.trim name)
-      |> Repo.one
+    topic = Cache.lookup(@user_channel_cache, name) || Topic
+    |> Topic.by_name(String.trim name)
+    |> Repo.one
     case topic do
       nil -> {:error, %{reason: "No Topic by name '#{name}'"}}
-      _ -> {:ok, %{msg: "welcome to #{name}"}, socket}
+      _ ->
+        # TODO: count the number of user at channel. See Phoenix.Presence docs.
+        Cache.insert(@user_channel_cache, {topic, true})
+        {:ok, %{msg: "welcome to #{name}"}, socket}
     end
   end
 
