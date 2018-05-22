@@ -1,4 +1,4 @@
-defmodule Coyote.PageController do
+defmodule CoyoteWeb.PageController do
   use Coyote.Web, :controller
 
   def index(conn, _params) do

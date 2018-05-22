@@ -1,5 +1,5 @@
-defmodule Coyote.PageControllerTest do
-  use Coyote.ConnCase
+defmodule CoyoteWeb.PageControllerTest do
+  use CoyoteWeb.ConnCase
 
   # test "GET /", %{conn: conn} do
   #   conn = get conn, "/"

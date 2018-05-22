@@ -1,4 +1,4 @@
-defmodule Coyote.ExAdmin.Dashboard do
+defmodule CoyoteWeb.ExAdmin.Dashboard do
   use ExAdmin.Register
 
   register_page "Dashboard" do

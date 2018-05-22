@@ -1,8 +1,8 @@
-defmodule Coyote.UserChannel do
+defmodule CoyoteWeb.UserChannel do
   use Coyote.Constants
   use Phoenix.Channel
   alias Coyote.Cache
-  alias Coyote.Topic
+  alias CoyoteWeb.Topic
   alias Coyote.Repo
 
   @doc """

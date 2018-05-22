@@ -1,7 +1,7 @@
-defmodule Coyote.TopicControllerTest do
-  use Coyote.ConnCase
+defmodule CoyoteWeb.TopicControllerTest do
+  use CoyoteWeb.ConnCase
 
-  alias Coyote.Topic
+  alias CoyoteWeb.Topic
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 

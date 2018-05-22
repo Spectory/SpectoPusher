@@ -1,4 +1,4 @@
-defmodule Coyote.Router do
+defmodule CoyoteWeb.Router do
   use Coyote.Web, :router
   use ExAdmin.Router
 
@@ -14,13 +14,13 @@ defmodule Coyote.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Coyote do
+  scope "/", CoyoteWeb do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  scope "/api", Coyote do
+  scope "/api", CoyoteWeb do
     pipe_through :api
     resources "/topics", TopicController, except: [:new, :edit]
   end

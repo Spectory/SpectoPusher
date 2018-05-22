@@ -1,3 +1,3 @@
 defmodule Coyote.PageViewTest do
-  use Coyote.ConnCase, async: true
+  use CoyoteWeb.ConnCase, async: true
 end

@@ -62,7 +62,7 @@ chatInput.addEventListener("keypress", event => {
   if(event.keyCode === 13){
     //send the message with event name "new message"
     //the bodt is the message payload
-    channel.push("new_msg", {body: chatInput.value}) 
+    channel.push("broadcast", {body: chatInput.value})
     chatInput.value = ""
   }
 })
@@ -74,7 +74,7 @@ function join(topic) {
     .receive("ok", resp => { console.log("Joined successfully", resp) })
     .receive("error", resp => { console.log("Unable to join", resp) })
 
-  channel.on("new_msg", payload => {
+  channel.on("broadcast", payload => {
     let messageItem = document.createElement("li");
     messageItem.innerText = `[${Date()}] ${payload.body}`
     messagesContainer.appendChild(messageItem)

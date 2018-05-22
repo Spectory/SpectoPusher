@@ -10,10 +10,10 @@ config :coyote,
   ecto_repos: [Coyote.Repo]
 
 # Configures the endpoint
-config :coyote, Coyote.Endpoint,
+config :coyote, CoyoteWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "HgTCOwl642x3g+hXp540EzVFDIcXd/eLKdHZeACbybEbnJdy/JN49Y7NgLz/9CSL",
-  render_errors: [view: Coyote.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: CoyoteWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Coyote.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -27,8 +27,8 @@ config :ex_admin,
   repo: Coyote.Repo,
   module: Coyote,
   modules: [
-    Coyote.ExAdmin.Dashboard,
-    Coyote.ExAdmin.Topic,
+    CoyoteWeb.ExAdmin.Dashboard,
+    CoyoteWeb.ExAdmin.Topic,
   ]
 
 # Import environment specific config. This must remain at the bottom

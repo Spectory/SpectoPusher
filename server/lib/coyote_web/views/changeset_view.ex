@@ -1,4 +1,4 @@
-defmodule Coyote.ChangesetView do
+defmodule CoyoteWeb.ChangesetView do
   use Coyote.Web, :view
 
   @doc """

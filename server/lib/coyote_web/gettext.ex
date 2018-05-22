@@ -1,4 +1,4 @@
-defmodule Coyote.Gettext do
+defmodule CoyoteWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
