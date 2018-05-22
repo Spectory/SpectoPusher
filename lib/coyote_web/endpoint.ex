@@ -1,7 +1,7 @@
-defmodule Coyote.Endpoint do
+defmodule CoyoteWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :coyote
 
-  socket "/socket", Coyote.UserSocket
+  socket "/socket", CoyoteWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -38,5 +38,5 @@ defmodule Coyote.Endpoint do
     key: "_coyote_key",
     signing_salt: "4IaptaUm"
 
-  plug Coyote.Router
+  plug CoyoteWeb.Router
 end

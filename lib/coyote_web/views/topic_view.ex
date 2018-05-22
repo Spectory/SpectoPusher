@@ -1,12 +1,12 @@
-defmodule Coyote.TopicView do
+defmodule CoyoteWeb.TopicView do
   use Coyote.Web, :view
 
   def render("index.json", %{topics: topics}) do
-    %{data: render_many(topics, Coyote.TopicView, "topic.json")}
+    %{data: render_many(topics, CoyoteWeb.TopicView, "topic.json")}
   end
 
   def render("show.json", %{topic: topic}) do
-    %{data: render_one(topic, Coyote.TopicView, "topic.json")}
+    %{data: render_one(topic, CoyoteWeb.TopicView, "topic.json")}
   end
 
   def render("topic.json", %{topic: topic}) do

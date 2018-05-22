@@ -1,4 +1,4 @@
-defmodule Coyote.ErrorHelpers do
+defmodule CoyoteWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule Coyote.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(Coyote.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(CoyoteWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(Coyote.Gettext, "errors", msg, opts)
+      Gettext.dgettext(CoyoteWeb.Gettext, "errors", msg, opts)
     end
   end
 end

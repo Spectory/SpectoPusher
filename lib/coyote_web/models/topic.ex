@@ -1,4 +1,4 @@
-defmodule Coyote.Topic do
+defmodule CoyoteWeb.Topic do
   use Coyote.Web, :model
 
   schema "topics" do

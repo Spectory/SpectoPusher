@@ -28,20 +28,20 @@ defmodule Coyote.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller
+      use Phoenix.Controller, namespace: CoyoteWeb
 
       alias Coyote.Repo
       import Ecto
       import Ecto.Query
 
-      import Coyote.Router.Helpers
-      import Coyote.Gettext
+      import CoyoteWeb.Router.Helpers
+      import CoyoteWeb.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: "lib/coyote_web/templates", namespace: CoyoteWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -49,9 +49,9 @@ defmodule Coyote.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Coyote.Router.Helpers
-      import Coyote.ErrorHelpers
-      import Coyote.Gettext
+      import CoyoteWeb.Router.Helpers
+      import CoyoteWeb.ErrorHelpers
+      import CoyoteWeb.Gettext
     end
   end
 
@@ -68,7 +68,7 @@ defmodule Coyote.Web do
       alias Coyote.Repo
       import Ecto
       import Ecto.Query
-      import Coyote.Gettext
+      import CoyoteWeb.Gettext
     end
   end
 

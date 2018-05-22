@@ -1,7 +1,7 @@
-defmodule Coyote.TopicController do
+defmodule CoyoteWeb.TopicController do
   use Coyote.Web, :controller
 
-  alias Coyote.Topic
+  alias CoyoteWeb.Topic
 
   def index(conn, _params) do
     topics = Repo.all(Topic)
@@ -20,7 +20,7 @@ defmodule Coyote.TopicController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Coyote.ChangesetView, "error.json", changeset: changeset)
+        |> render(CoyoteWeb.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
@@ -39,7 +39,7 @@ defmodule Coyote.TopicController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Coyote.ChangesetView, "error.json", changeset: changeset)
+        |> render(CoyoteWeb.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

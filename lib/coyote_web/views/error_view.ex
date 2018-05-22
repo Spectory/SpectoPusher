@@ -1,4 +1,4 @@
-defmodule Coyote.ErrorView do
+defmodule CoyoteWeb.ErrorView do
   use Coyote.Web, :view
 
   def render("404.html", _assigns) do

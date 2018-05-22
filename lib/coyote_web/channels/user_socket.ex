@@ -1,8 +1,8 @@
-defmodule Coyote.UserSocket do
+defmodule CoyoteWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "*", Coyote.UserChannel
+  channel "*", CoyoteWeb.UserChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

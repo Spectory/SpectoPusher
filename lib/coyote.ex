@@ -12,7 +12,7 @@ defmodule Coyote do
       # Start the Ecto repository
       supervisor(Coyote.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(Coyote.Endpoint, []),
+      supervisor(CoyoteWeb.Endpoint, []),
       # Start your own worker by calling: Coyote.Worker.start_link(arg1, arg2, arg3)
       worker(Coyote.Cache, [@user_channel_cache]),
     ]

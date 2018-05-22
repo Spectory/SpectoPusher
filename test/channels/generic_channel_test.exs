@@ -1,7 +1,7 @@
-defmodule Coyote.UserChannelTest do
-  use Coyote.ChannelCase
+defmodule CoyoteWeb.UserChannelTest do
+  use CoyoteWeb.ChannelCase
 
-  alias Coyote.UserChannel
+  alias CoyoteWeb.UserChannel
 
   setup do
     {:ok, _, socket} =
