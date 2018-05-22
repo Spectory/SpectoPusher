@@ -1,3 +1,3 @@
-defmodule Coyote.LayoutViewTest do
-  use Coyote.ConnCase, async: true
+defmodule CoyoteWeb.LayoutViewTest do
+  use CoyoteWeb.ConnCase, async: true
 end

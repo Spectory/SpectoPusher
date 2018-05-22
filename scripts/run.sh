@@ -6,6 +6,6 @@ npm run build
 cd ..
 
 cd server
-rm -rf _build
-mix phoenix.server
+# rm -rf _build
+mix phx.server
 cd ..

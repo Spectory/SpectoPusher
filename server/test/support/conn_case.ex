@@ -1,4 +1,4 @@
-defmodule Coyote.ConnCase do
+defmodule CoyoteWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,10 +25,10 @@ defmodule Coyote.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import Coyote.Router.Helpers
+      import CoyoteWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint Coyote.Endpoint
+      @endpoint CoyoteWeb.Endpoint
     end
   end
 
