@@ -25,7 +25,7 @@ config :logger, :console,
 
 config :ex_admin,
   repo: Coyote.Repo,
-  module: Coyote,
+  module: CoyoteWeb,
   modules: [
     CoyoteWeb.ExAdmin.Dashboard,
     CoyoteWeb.ExAdmin.Topic,
