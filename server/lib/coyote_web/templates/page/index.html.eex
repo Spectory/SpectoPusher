@@ -1,13 +1,10 @@
-<input id='topic' placeholder='topic name from db'/>
-<button id="joinBtn">Join Topic</button>
 
 
-<div>send msg</div><input id="chat-input" type="text"></input>
-<div id="messages"></div>
-
-<section>
+<div class="login-form">
+  <img src="http://enacademic.com/pictures/enwiki/87/Wile_E_Coyote.gif"/>
   <%= form_for @conn, page_path(@conn, :login), [as: :credentials, class: "form"], fn f -> %>
     <div class='form-body'>
+      <label>Please enter access key</label>
       <div class='form-group'>
           <%=
             password_input f,
@@ -17,6 +14,6 @@
           %>
         </div>
     </div>
-    <%= submit "Login", class: "from-footer" %>
+    <%= submit "Login", class: "login-button" %>
   <% end %>
-</section>
+</div>
