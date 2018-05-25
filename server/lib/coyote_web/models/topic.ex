@@ -1,5 +1,5 @@
 defmodule CoyoteWeb.Topic do
-  use Coyote.Web, :model
+  use CoyoteWeb, :model
 
   schema "topics" do
     field :name, :string
