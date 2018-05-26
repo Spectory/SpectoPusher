@@ -14,3 +14,6 @@ config :coyote, Coyote.Repo,
   adapter: Sqlite.Ecto2,
   database: "db/coyote_test.sqlite3",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Dummy access key.
+System.put_env("ACCESS_KEY", "testfreepass")

@@ -1,5 +1,5 @@
 defmodule CoyoteWeb.ChangesetView do
-  use Coyote.Web, :view
+  use CoyoteWeb, :view
 
   @doc """
   Traverses and translates changeset errors.

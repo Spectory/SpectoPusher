@@ -54,6 +54,7 @@ defmodule Coyote.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:sqlitex, ">= 0.0.0"},
      {:exrm, "~> 1.0.3"},
+     {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false}
     ]
   end
 

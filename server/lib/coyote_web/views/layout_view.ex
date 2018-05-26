@@ -1,3 +1,3 @@
 defmodule CoyoteWeb.LayoutView do
-  use Coyote.Web, :view
+  use CoyoteWeb, :view
 end

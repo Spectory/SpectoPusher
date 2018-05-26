@@ -1,5 +1,5 @@
 defmodule CoyoteWeb.Router do
-  use Coyote.Web, :router
+  use CoyoteWeb, :router
   use ExAdmin.Router
 
   pipeline :browser do
@@ -14,9 +14,14 @@ defmodule CoyoteWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :require_access do
+    plug CoyoteWeb.AccessPlug
+  end
+
   scope "/", CoyoteWeb do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
+    post "/login", PageController, :login
   end
 
   # Other scopes may use custom stacks.
@@ -26,7 +31,7 @@ defmodule CoyoteWeb.Router do
   end
 
   scope "/admin", ExAdmin do
-    pipe_through :browser
+    pipe_through [:browser, :require_access]
     admin_routes()
   end
 end

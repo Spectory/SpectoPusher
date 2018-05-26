@@ -1,5 +1,5 @@
 defmodule CoyoteWeb.TopicView do
-  use Coyote.Web, :view
+  use CoyoteWeb, :view
 
   def render("index.json", %{topics: topics}) do
     %{data: render_many(topics, CoyoteWeb.TopicView, "topic.json")}
