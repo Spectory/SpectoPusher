@@ -6,7 +6,10 @@ defmodule CoyoteWeb.TopicControllerTest do
   @invalid_attrs %{}
 
   setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
+    conn = conn
+      |> put_req_header("accept", "application/json")
+      |> put_req_header("access_key", System.get_env("ACCESS_KEY"))
+    {:ok, conn: conn}
   end
 
   test "lists all entries on index", %{conn: conn} do
@@ -56,5 +59,13 @@ defmodule CoyoteWeb.TopicControllerTest do
     conn = delete conn, topic_path(conn, :delete, topic)
     assert response(conn, 204)
     refute Repo.get(Topic, topic.id)
+  end
+
+  test "halt authenticate requests", %{conn: conn} do
+    conn = conn
+      |> put_req_header("access_key", "invalid key")
+      |> get(topic_path(conn, :index))
+    assert conn.status == 401
+    assert conn.resp_body == "Invalid access key"
   end
 end
