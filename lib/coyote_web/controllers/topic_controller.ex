@@ -1,5 +1,5 @@
 defmodule CoyoteWeb.TopicController do
-  use Coyote.Web, :controller
+  use CoyoteWeb, :controller
 
   alias CoyoteWeb.Topic
 

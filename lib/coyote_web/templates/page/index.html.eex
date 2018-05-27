@@ -1,6 +1,22 @@
-<input id='topic' placeholder='topic name from db'/>
-<button id="joinBtn">Join Topic</button>
 
-
-<div>send msg</div><input id="chat-input" type="text"></input>
-<div id="messages"></div>
+<div class="login-page">
+  <div class="login-form">
+    <img class="login-img" src="http://enacademic.com/pictures/enwiki/87/Wile_E_Coyote.gif"/>
+    <%= form_for @conn, page_path(@conn, :login), [as: :credentials, class: "form"], fn f -> %>
+      <div class='form-body'>
+        <label>Please enter access key</label>
+        <div class='form-group'>
+            <%=
+              password_input f,
+              :password,
+              placeholder: "Access Key",
+              class: if get_flash(@conn, :error), do: "login-input login-error", else: "login-input"
+            %>
+          </div>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      </div>
+      <%= submit "Login", class: "login-button" %>
+    <% end %>
+  </div>
+</div>

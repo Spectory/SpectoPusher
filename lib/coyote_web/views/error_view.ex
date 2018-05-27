@@ -1,5 +1,5 @@
 defmodule CoyoteWeb.ErrorView do
-  use Coyote.Web, :view
+  use CoyoteWeb, :view
 
   def render("404.html", _assigns) do
     "Page not found"
