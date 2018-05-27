@@ -18,6 +18,10 @@ defmodule CoyoteWeb.Router do
     plug CoyoteWeb.AccessPlug
   end
 
+  pipeline :require_api_access do
+    plug CoyoteWeb.AccessApiPlug
+  end
+
   scope "/", CoyoteWeb do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
@@ -26,7 +30,7 @@ defmodule CoyoteWeb.Router do
 
   # Other scopes may use custom stacks.
   scope "/api", CoyoteWeb do
-    pipe_through :api
+    pipe_through [:api, :require_api_access]
     resources "/topics", TopicController, except: [:new, :edit]
   end
 
