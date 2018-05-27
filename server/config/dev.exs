@@ -38,3 +38,6 @@ config :phoenix, :stacktrace_depth, 20
 config :coyote, Coyote.Repo,
   adapter: Sqlite.Ecto2,
   database: "db/coyote_dev.sqlite3"
+
+# Dummy access key.
+System.put_env("ACCESS_KEY", "letmein")

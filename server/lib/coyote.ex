@@ -29,4 +29,7 @@ defmodule Coyote do
     Coyote.Endpoint.config_change(changed, removed)
     :ok
   end
+
+  # Make sure ENV vars are set correctly.
+  Coyote.EnvHelper.verify_env(Mix.env)
 end
