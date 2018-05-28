@@ -15,5 +15,7 @@ config :coyote, Coyote.Repo,
   database: "db/coyote_test.sqlite3",
   pool: Ecto.Adapters.SQL.Sandbox
 
-# Dummy access key.
+# Dummy access key, for admin login and API requests.
 System.put_env("ACCESS_KEY", "testfreepass")
+# Dummy crypto salt, used to sign/verify tokens.
+System.put_env("CRYPTO_SALT", "crypto_salt")

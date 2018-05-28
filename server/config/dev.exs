@@ -39,5 +39,7 @@ config :coyote, Coyote.Repo,
   adapter: Sqlite.Ecto2,
   database: "db/coyote_dev.sqlite3"
 
-# Dummy access key.
+# Dummy access key, for admin login and API requests.
 System.put_env("ACCESS_KEY", "letmein")
+# Dummy crypto salt, used to sign/verify tokens.
+System.put_env("CRYPTO_SALT", "crypto_salt")

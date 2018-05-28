@@ -1,9 +1,10 @@
 defmodule Coyote.EnvHelper do
   require Logger
 
-  @prod_vars ~w(ACCESS_KEY SECRET_KEY_BASE)
-  @dev_var ~w(ACCESS_KEY)
-  @test_var ~w(ACCESS_KEY)
+  @base_vars ~w(ACCESS_KEY CRYPTO_SALT)
+  @prod_vars @base_vars ++ ~w(SECRET_KEY_BASE)
+  @dev_var @base_vars
+  @test_var @base_vars
   @envs %{prod: @prod_vars, dev: @dev_var, test: @test_var}
 
   def verify_env(env) do
