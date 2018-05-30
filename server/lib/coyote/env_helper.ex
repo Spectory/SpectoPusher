@@ -13,6 +13,13 @@ defmodule Coyote.EnvHelper do
     |> Enum.each(&verify/1)
   end
 
+  def get_env(key, default \\ nil) do
+    case System.get_env(key) do
+      nil -> default
+      val -> val
+    end
+  end
+
   defp verify(var) do
     unless System.get_env(var) do
       Logger.error("#{__MODULE__}.verify: #{var} must be set at #{Mix.env}!
