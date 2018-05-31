@@ -32,7 +32,7 @@ defmodule CoyoteWeb.Router do
   scope "/api", CoyoteWeb do
     pipe_through [:api, :require_api_access]
     resources "/topics", TopicController, except: [:new, :edit]
-    # TODO: add a route that generetes socket connection tokens. Auth.sign
+    get "/tokens", TokenController, :index
   end
 
   scope "/admin", ExAdmin do

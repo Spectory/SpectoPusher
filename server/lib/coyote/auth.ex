@@ -7,7 +7,9 @@ defmodule Coyote.Auth do
 
   def authenticate(hash), do: EnvHelper.get_env("ACCESS_KEY") == hash
 
-  def sign(data), do: Token.sign(Endpoint, salt(), data)
+  def sign(data) when not is_nil(data), do: Token.sign(Endpoint, salt(), data)
+
+  def sign_all(lst) when is_list(lst), do: Enum.map(lst, &(sign &1))
 
   def verify(token), do: Token.verify(Endpoint, salt(), token, max_age: @day)
 

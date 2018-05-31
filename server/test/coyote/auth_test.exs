@@ -14,6 +14,14 @@ defmodule Coyote.AuthTest do
     assert is_binary Auth.sign("some value")
   end
 
+  test "sign_all" do
+    keys = [0, "1" , %{mama: "papa"}]
+    tokens = Auth.sign_all keys
+    assert Enum.at(tokens, 0) == Auth.sign Enum.at(keys, 0)
+    assert Enum.at(tokens, 1) == Auth.sign Enum.at(keys, 1)
+    assert Enum.at(tokens, 2) == Auth.sign Enum.at(keys, 2)
+  end
+
   test "verify valid tokens" do
     key = %{some: "value"}
     token = Auth.sign(key)
