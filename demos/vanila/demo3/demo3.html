@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+    <h3>Example of a secure connection to Coyote socket.</h3>
+    <h3>Requirements:</h3>
+    <ol>
+        <li>Make sure Coyote server is running with `UNSECURED_SOCKET` env var off (see `dev.exs` file).</li>
+        <li>run `iex -S mix` from the server folder, and use `Coyote.Auth.sign_all [1,2]` to generate 2 tokens.</li>
+        <li>Open this page in 2 browsers, enter the generated tokens and click connect</li>
+    </ol>
+
+    <label>Token</label>
+    <input type="text" id="token">
+    <small>(See method <i>Coyote.Auth.sign</i> on Coyote server)</small>
+    <br>
+    <button onclick='onClick()'>connect</button>
+
+    <script src="../../../core/lib/Coyote.js"></script>
+    <script src='demo3.js'></script>
+</body>
+
+</html>

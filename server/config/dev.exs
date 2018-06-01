@@ -44,4 +44,4 @@ System.put_env("ACCESS_KEY", "letmein")
 # Dummy crypto salt, used to sign/verify tokens.
 System.put_env("CRYPTO_SALT", "crypto_salt")
 # Dummy crypto salt, used to sign/verify tokens.
-System.put_env("UNSECURE_SOCKET", "true")
+System.put_env("UNSECURED_SOCKET", "true")

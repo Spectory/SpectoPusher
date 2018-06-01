@@ -145,11 +145,11 @@ var Coyote = function () {
   }, {
     key: 'connect',
     value: function connect() {
-      var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var callbacks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       this.log_('Coyote.connect: connecting ' + this.url);
-      this.socket = new Phoenix.Socket(this.URL, args);
+      this.socket = new Phoenix.Socket(this.URL, { params: params });
       this.socket.connect();
       this.socket.onOpen(callbacks.onOpen);
       this.socket.onError(callbacks.onError);

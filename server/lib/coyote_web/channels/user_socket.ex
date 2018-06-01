@@ -11,10 +11,10 @@ defmodule CoyoteWeb.UserSocket do
 
   @doc """
   Establishes a socket connection.
-  If env var UNSECURE_SOCKET == true, allow connection without authentication.
+  If env var UNSECURED_SOCKET == true, allow connection without authentication.
   """
   def connect(params, socket) do
-    case Coyote.EnvHelper.get_env("UNSECURE_SOCKET") do
+    case Coyote.EnvHelper.get_env("UNSECURED_SOCKET") do
       "true" -> unsecure_connection(socket)
       _ -> connect_secure(params, socket)
     end

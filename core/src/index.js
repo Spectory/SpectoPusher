@@ -35,9 +35,9 @@ export default class Coyote {
   * @param {object} args - Connection parameters passed to Phoenix socket.
   * @param {object} callbacks - Callbacks collection for socket.
   */
-  connect(args = {}, callbacks = {}) {
+  connect(params = {}, callbacks = {}) {
     this.log_(`Coyote.connect: connecting ${this.url}`);
-    this.socket = new Phoenix.Socket(this.URL, args);
+    this.socket = new Phoenix.Socket(this.URL, {params});
     this.socket.connect();
     this.socket.onOpen(callbacks.onOpen);
     this.socket.onError(callbacks.onError);
