@@ -28,7 +28,6 @@ defmodule Coyote.Mixfile do
        :phoenix_ecto,
        :sqlite_ecto2,
        :ex_admin,
-       :postgrex,
        :sqlitex
       ]
     ]
@@ -51,7 +50,7 @@ defmodule Coyote.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:ex_admin, github: "smpallen99/ex_admin"},
-     {:postgrex, ">= 0.0.0"},
+     {:poison, "~> 2.2  "},
      {:sqlitex, ">= 0.0.0"},
      {:exrm, "~> 1.0.3"},
      {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false}
