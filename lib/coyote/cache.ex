@@ -31,7 +31,7 @@ defmodule Coyote.Cache do
   @impl true
   def handle_call({:lookup, key}, _from, cache) do
     case :ets.lookup(cache, key) do
-      [{key, value}] -> {:reply, value, cache}
+      [{_key, value}] -> {:reply, value, cache}
       [] -> {:reply, nil, cache}
     end
   end

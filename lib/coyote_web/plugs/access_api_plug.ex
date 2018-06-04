@@ -6,7 +6,8 @@ defmodule CoyoteWeb.AccessApiPlug do
   end
 
   def call(conn, _) do
-    access_key = List.keyfind(conn.req_headers, "access_key", 0)
+    access_key = conn.req_headers
+      |> List.keyfind("access_key", 0)
       |> getAccessKeyFromHeader
     case Coyote.Auth.authenticate(access_key) do
       true -> conn

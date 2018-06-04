@@ -32,6 +32,7 @@ defmodule CoyoteWeb.Router do
   scope "/api", CoyoteWeb do
     pipe_through [:api, :require_api_access]
     resources "/topics", TopicController, except: [:new, :edit]
+    get "/tokens", TokenController, :index
   end
 
   scope "/admin", ExAdmin do
