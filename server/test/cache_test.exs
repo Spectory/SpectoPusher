@@ -2,7 +2,7 @@ defmodule Coyote.CacheTest do
   use ExUnit.Case, async: true
 
   setup do
-    {:ok, cache_pid} = GenServer.start_link(Coyote.Cache, :test_cache)
+    {:ok, cache_pid} = Coyote.Cache.start_link(:test_cache)
     %{cache: cache_pid}
   end
 
