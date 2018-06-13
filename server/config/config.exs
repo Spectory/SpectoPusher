@@ -5,10 +5,6 @@
 # is restricted to this project.
 use Mix.Config
 
-# General application configuration
-config :coyote,
-  ecto_repos: [Coyote.Repo]
-
 # Configures the endpoint
 config :coyote, CoyoteWeb.Endpoint,
   url: [host: "localhost"],

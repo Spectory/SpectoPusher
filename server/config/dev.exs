@@ -34,11 +34,6 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
-# Configure your database
-config :coyote, Coyote.Repo,
-  adapter: Sqlite.Ecto2,
-  database: "db/coyote_dev.sqlite3"
-
 # Dummy access key, for admin login and API requests.
 System.put_env("ACCESS_KEY", "letmein")
 # Dummy crypto salt, used to sign/verify tokens.
