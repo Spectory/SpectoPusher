@@ -24,13 +24,13 @@ defmodule CoyoteWeb.Router do
   scope "/", CoyoteWeb do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
+    get "/admin", AdminController, :index
     post "/login", PageController, :login
   end
 
   # Other scopes may use custom stacks.
   scope "/api", CoyoteWeb do
     pipe_through [:api, :require_api_access]
-    resources "/topics", TopicController, except: [:new, :edit]
     get "/tokens", TokenController, :index
   end
 end
