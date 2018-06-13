@@ -60,9 +60,4 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 
-# Configure your database
-config :coyote, Coyote.Repo,
-  adapter: Sqlite.Ecto2,
-  database: "coyote_prod.sqlite3"
-
 import_config "db/prod.secret.exs"

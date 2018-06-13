@@ -20,24 +20,12 @@ defmodule CoyoteWeb.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
-      alias Coyote.Repo
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-
-
       # The default endpoint for testing
       @endpoint CoyoteWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Coyote.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Coyote.Repo, {:shared, self()})
-    end
-
     :ok
   end
 end
