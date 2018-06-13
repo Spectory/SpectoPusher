@@ -18,21 +18,12 @@ defmodule CoyoteWeb do
 
   def model do
     quote do
-      use Ecto.Schema
-
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
     end
   end
 
   def controller do
     quote do
       use Phoenix.Controller, namespace: CoyoteWeb
-
-      alias Coyote.Repo
-      import Ecto
-      import Ecto.Query
 
       import CoyoteWeb.Router.Helpers
       import CoyoteWeb.Gettext
@@ -65,9 +56,6 @@ defmodule CoyoteWeb do
     quote do
       use Phoenix.Channel
 
-      alias Coyote.Repo
-      import Ecto
-      import Ecto.Query
       import CoyoteWeb.Gettext
     end
   end

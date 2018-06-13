@@ -1,6 +1,5 @@
 defmodule CoyoteWeb.Router do
   use CoyoteWeb, :router
-  use ExAdmin.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -33,10 +32,5 @@ defmodule CoyoteWeb.Router do
     pipe_through [:api, :require_api_access]
     resources "/topics", TopicController, except: [:new, :edit]
     get "/tokens", TokenController, :index
-  end
-
-  scope "/admin", ExAdmin do
-    pipe_through [:browser, :require_access]
-    admin_routes()
   end
 end

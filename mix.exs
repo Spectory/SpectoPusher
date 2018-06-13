@@ -25,8 +25,6 @@ defmodule Coyote.Mixfile do
        :cowboy,
        :logger,
        :gettext,
-       :phoenix_ecto,
-       :sqlite_ecto2,
        :ex_admin,
        :sqlitex
       ]
@@ -43,8 +41,6 @@ defmodule Coyote.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.3.2"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
-     {:sqlite_ecto2, "~> 2.0.0-dev.8"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
@@ -64,8 +60,5 @@ defmodule Coyote.Mixfile do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

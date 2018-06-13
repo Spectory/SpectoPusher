@@ -31,7 +31,7 @@ defmodule CoyoteWeb.UserSocket do
       _ -> :error
     end
   end
-  defp connect_secure(_params, socket), do: :error
+  defp connect_secure(_params, _socket), do: :error
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #
