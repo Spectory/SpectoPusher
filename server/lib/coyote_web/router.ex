@@ -22,10 +22,16 @@ defmodule CoyoteWeb.Router do
   end
 
   scope "/", CoyoteWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
     get "/", PageController, :index
-    get "/admin", AdminController, :index
     post "/login", PageController, :login
+
+  end
+
+  scope "/admin", CoyoteWeb do
+    pipe_through :browser # TODO should pipe through auth.
+    get "/", AdminController, :index
+    post "/create_topic", AdminController, :create_topic
   end
 
   # Other scopes may use custom stacks.

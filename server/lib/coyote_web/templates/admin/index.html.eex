@@ -1,1 +1,25 @@
-<h1>admin</h1>
+<div class="admin-page">
+  <div class="topic-form">
+    <%= form_for @conn, admin_path(@conn, :create_topic), [as: :topic], fn f -> %>
+      <div class='form-body'>
+        <label>Topic</label>
+        <div class='form-group'>
+          Name: <%= text_input f, :name %>
+        </div>
+      <%= submit "Create", class: "login-button" %>
+    <% end %>
+  </div>
+
+   <div class="topics-table">
+    <div class="topics-header topics-row ">
+      <div class="topics-name">Name</div>
+      <div class="topics-count">Live Connections</div>
+    </div>
+    <%= for topic <- @topics do %>
+      <div class="topics-row">
+        <div class="topics-name"><%= Enum.at(topic, 0) %></div>
+        <div class="topics-count">-todo-</div>
+      </div>
+    <% end%>
+  <div>
+</div>
