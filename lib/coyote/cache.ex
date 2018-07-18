@@ -6,7 +6,7 @@ defmodule Coyote.Cache do
   ## Examples
       iex> Coyote.Cache.start_link(:my_cache, true)
       {:ok, #PID<0.276.0>}
-      iex> Coyote.Cache.insert(:my_cache, {"some_key": "some_value"})
+      iex> Coyote.Cache.insert(:my_cache, {"some_key", "some_value"})
       iex> Coyote.Cache.insert(:my_cache, {"some_key", "some_value"})
       :ok
       iex> Coyote.Cache.lookup(:my_cache, "some_key")
