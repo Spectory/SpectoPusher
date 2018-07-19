@@ -38,5 +38,5 @@ config :phoenix, :stacktrace_depth, 20
 System.put_env("ACCESS_KEY", "letmein")
 # Dummy crypto salt, used to sign/verify tokens.
 System.put_env("CRYPTO_SALT", "crypto_salt")
-# Dummy crypto salt, used to sign/verify tokens.
+# Allow insecure socket connections.
 System.put_env("UNSECURED_SOCKET", "true")

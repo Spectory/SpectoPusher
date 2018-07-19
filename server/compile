@@ -1,0 +1,5 @@
+# Compile instructions for Heroku.
+# We use webpack (instead of the default brunch) for static assets compilation
+info "Building Phoenix static assets"
+webpack
+# mix phx.digest

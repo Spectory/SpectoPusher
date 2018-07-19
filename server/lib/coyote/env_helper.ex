@@ -2,7 +2,7 @@ defmodule Coyote.EnvHelper do
   require Logger
 
   @base_vars ~w(ACCESS_KEY CRYPTO_SALT)
-  @prod_vars @base_vars ++ ~w(SECRET_KEY_BASE)
+  @prod_vars @base_vars ++ ~w(HOST SECRET_KEY_BASE)
   @dev_var @base_vars
   @test_var @base_vars
   @envs %{prod: @prod_vars, dev: @dev_var, test: @test_var}
