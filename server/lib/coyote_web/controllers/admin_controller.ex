@@ -20,8 +20,11 @@ defmodule CoyoteWeb.AdminController do
     topics = @user_channel_cache
       |> Coyote.Cache.to_list
       |> Enum.map(&(Tuple.to_list &1))
+<<<<<<< HEAD
       |> Enum.map(&(List.first &1))
       |> Enum.sort
+=======
+>>>>>>> 44ffe808ef5698a932f3bc905202361206ba0910
     render conn, "index.html", topics: topics
   end
 end
