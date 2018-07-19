@@ -17,7 +17,11 @@
     </div>
     <%= for topic <- @topics do %>
       <div class="topics-row">
+<<<<<<< HEAD
         <div class="topics-name"><%= topic %></div>
+=======
+        <div class="topics-name"><%= Enum.at(topic, 0) %></div>
+>>>>>>> 44ffe808ef5698a932f3bc905202361206ba0910
         <div class="topics-count">-todo-</div>
       </div>
     <% end%>
