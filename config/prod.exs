@@ -13,6 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :coyote, CoyoteWeb.Endpoint,
 	load_from_system_env: true,
+	http: [port: {:system, "PORT"}],
   url: [scheme: "https", host: {:system, "HOST"}, port: 443],
 	cache_static_manifest: "priv/static/cache_manifest.json",
 	secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
