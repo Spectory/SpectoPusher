@@ -13,7 +13,7 @@ defmodule CoyoteWeb.PageController do
         |> Phoenix.Controller.redirect(to: "/admin") # TODO: create admin page.
       false ->  conn
         |> put_flash(:error, "Access key doesn't match ACCESS_KEY env variable.")
-        |> render("index.html")
+        |> redirect to: "/"
     end
   end
 end

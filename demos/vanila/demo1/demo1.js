@@ -5,7 +5,7 @@
  */
 
 // Create a Coyote instance.
-const url='wss://coyote-demo-stg.herokuapp.com';
+const url='ws://localhost:4000';
 const params = {
   url: `${url}/socket`,
   debug: true,

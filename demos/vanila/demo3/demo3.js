@@ -5,10 +5,12 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  const url = 'ws://localhost:4000';
+  // const url = 'wss://coyote-demo-stg.herokuapp.com';
 
   // Create a Coyote instance.
   const params = {
-    url: 'ws://localhost:4000/socket',
+    url: `${url}/socket`,
     debug: true,
   }
   window.Coyote = new Coyote(params);

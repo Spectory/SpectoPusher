@@ -16,7 +16,15 @@ else
   printf "${GREEN}missing repo name...${NC}\n"
   exit
 fi
-printf "${GREEN}Deploying to $repo ${NC}\n"
+
+# split subtree into heroku-deploy temp branch
+printf "${GREEN}Preparing deploy branch...${NC}\n"
+git subtree split --prefix server -b
 
 # Push server folder (from master branch) to Heroku.
-git subtree push --prefix server $repo master
+printf "${GREEN}Deploying to $repo...${NC}\n"
+git push -f $repo heroku-deploy:master
+
+# Delete temp branch
+printf "${GREEN}Cleaning up...${NC}\n"
+git branch -D heroku-deploy
