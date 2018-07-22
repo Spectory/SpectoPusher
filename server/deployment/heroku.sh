@@ -19,7 +19,7 @@ fi
 
 # split subtree into heroku-deploy temp branch
 printf "${GREEN}Preparing deploy branch...${NC}\n"
-git subtree split --prefix server -b
+git subtree split --prefix server -b heroku-deploy
 
 # Push server folder (from master branch) to Heroku.
 printf "${GREEN}Deploying to $repo...${NC}\n"
