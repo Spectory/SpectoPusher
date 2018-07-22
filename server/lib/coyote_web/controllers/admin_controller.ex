@@ -3,11 +3,7 @@ defmodule CoyoteWeb.AdminController do
   use Coyote.Constants
 
   def index(conn, _params) do
-<<<<<<< HEAD
     render_index(conn, 10)
-=======
-    render_index(conn)
->>>>>>> 4b2ec3bb0dc746b267dbe063280dbdcbb1c41eb4
   end
 
   def create_topic(conn, %{"topic" => %{"name" => name}}) do
@@ -20,23 +16,15 @@ defmodule CoyoteWeb.AdminController do
     Coyote.Cache.to_file(@user_channel_cache)
   end
 
-<<<<<<< HEAD
   defp render_index(conn, token_count \\ 0) do
-=======
-  defp render_index(conn) do
->>>>>>> 4b2ec3bb0dc746b267dbe063280dbdcbb1c41eb4
     topics = @user_channel_cache
       |> Coyote.Cache.to_list
       |> Enum.map(&(Tuple.to_list &1))
       |> Enum.map(&(List.first &1))
       |> Enum.sort
-<<<<<<< HEAD
     tokens = 0..token_count
       |> Enum.to_list
       |> Coyote.Auth.sign_all
     render conn, "index.html", %{topics: topics, tokens: tokens}
-=======
-    render conn, "index.html", topics: topics
->>>>>>> 4b2ec3bb0dc746b267dbe063280dbdcbb1c41eb4
   end
 end
