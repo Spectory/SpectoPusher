@@ -21,5 +21,11 @@
         <div class="topics-count">-todo-</div>
       </div>
     <% end%>
-  <div>
+  </div>
+
+  <%= for token <- @tokens do %>
+    <div>
+      <%= token %>
+    </div>
+  <% end%>
 </div>
