@@ -1,8 +1,11 @@
 # Coyote Server
 
+<<<<<<< HEAD
 ### Deployment
 See `deployment` folder scripts.
 
+=======
+>>>>>>> 4b2ec3bb0dc746b267dbe063280dbdcbb1c41eb4
 ### Dev setup
 
  - it is recommended to use [asdf version manager](https://github.com/asdf-vm/asdf). anyways make sure your local versions match the ones defined at `.tools-versions`
