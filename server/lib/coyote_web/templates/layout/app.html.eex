@@ -8,8 +8,9 @@
     <meta name="author" content="">
 
     <title>Hello Coyote!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/phoenix.css") %>">
+
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
   </head>
 
   <body>
