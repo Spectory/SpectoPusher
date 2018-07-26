@@ -24,9 +24,7 @@ defmodule Coyote.Mixfile do
        :phoenix_html,
        :cowboy,
        :logger,
-       :gettext,
-       :ex_admin,
-       :sqlitex
+       :gettext
       ]
     ]
   end
@@ -45,9 +43,7 @@ defmodule Coyote.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:ex_admin, github: "smpallen99/ex_admin"},
      {:poison, "~> 2.2  "},
-     {:sqlitex, ">= 0.0.0"},
      {:exrm, "~> 1.0.3"},
      {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false}
     ]

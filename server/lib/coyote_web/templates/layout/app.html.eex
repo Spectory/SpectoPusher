@@ -7,9 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Coyote!</title>
-
+    <title>Coyote</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
+    <%# Favicon with credits. %>
+    <link rel="icon" href="https://png.icons8.com/color/50/000000/overwolf.png" type="image/x-icon"/>
+    <a style="disply: none" href="https://icons8.com">Icon pack by Icons8</a>
 
   </head>
 
