@@ -1,0 +1,89 @@
+.login-page {
+  background: #eee;
+  font: normal 20px/normal "Antic", Helvetica, sans-serif;
+  height: 100%;
+  width: 100%;
+  
+  .login-img { 
+    background-image: url("https://u.imageresize.org/v2/0d9cbb9a-0450-4dd6-93d1-246620e91eaf.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 2px 2px #eee;
+    height: 100%;
+    margin: auto;
+    max-width: 1024px;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+    margin: 0 calc((100% - 425px) / 2);
+    position: absolute;
+    top: 0;
+    width: 425px;
+  }
+  
+  .form {
+    align-items: center;
+    background: rgba(255, 255, 255, .6);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 300px;
+  }
+
+  input {
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 21px;
+    color: #f1f6f9;
+    height: 42px;
+    padding: 0 20px;
+    text-overflow: ellipsis;
+    transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    width: 200px;
+
+    &:focus {
+      width: 300px;
+      cursor: default;
+      transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+
+    &::placeholder {
+      color: #f1f6f9;
+      opacity: 1;
+      text-align: center;
+    }
+  }
+
+  .login-button {
+    background: transparent;
+    border: 2px solid rgba(0, 0, 0, 0.6);
+    border-radius: 21px;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    font-weight: 600;
+    height: 42px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+    width: 300px;
+  }
+
+  .alert {
+    color: #d51616;
+    font-size: smaller;
+    line-height: 1.4;
+    text-align: center;
+  }
+}

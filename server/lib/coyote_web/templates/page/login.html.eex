@@ -1,9 +1,8 @@
 <div class="login-page">
+  <div class="login-img" title="Credit: http://www.epsilontheory.com/wp-content/uploads/epsilon-theory-too-clever-by-half-february-2-2018-coyote.jpg"></div>
   <div class="login-form">
-    <img class="login-img" src="http://enacademic.com/pictures/enwiki/87/Wile_E_Coyote.gif"/>
     <%= form_for @conn, page_path(@conn, :login), [as: :credentials, class: "form"], fn f -> %>
       <div class='form-body'>
-        <label>Please enter access key</label>
         <div class='form-group'>
             <%=
               password_input f,
@@ -12,10 +11,15 @@
               class: if get_flash(@conn, :error), do: "login-input login-error", else: "login-input"
             %>
           </div>
-        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       </div>
-      <%= submit "Login", class: "login-button" %>
+      <%= submit "Enter", class: "login-button" %>
+
+      <%= if get_flash(@conn, :info) do %>
+        <div class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></div>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+        <div class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></div>
+      <% end %>
     <% end %>
   </div>
 </div>

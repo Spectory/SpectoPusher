@@ -1,3 +1,11 @@
-body {
-  background: red;
+@import "normalize";
+@import 'login';
+
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body, html {
+  height: 100%;
 }
