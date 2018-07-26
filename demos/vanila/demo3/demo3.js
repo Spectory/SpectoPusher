@@ -5,8 +5,8 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const url = 'ws://localhost:4000';
-  // const url = 'wss://coyote-demo-stg.herokuapp.com';
+  // const url = 'ws://localhost:4000';
+  const url = 'wss://coyote-demo.herokuapp.com';
 
   // Create a Coyote instance.
   const params = {
