@@ -11,8 +11,8 @@
               class: if get_flash(@conn, :error), do: "login-input login-error", else: "login-input"
             %>
           </div>
+        <%= submit "Enter", class: "login-button" %>
       </div>
-      <%= submit "Enter", class: "login-button" %>
 
       <%= if get_flash(@conn, :info) do %>
         <div class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></div>

@@ -3,8 +3,8 @@
   font: normal 20px/normal "Antic", Helvetica, sans-serif;
   height: 100%;
   width: 100%;
-  
-  .login-img { 
+
+  .login-img {
     background-image: url("https://u.imageresize.org/v2/0d9cbb9a-0450-4dd6-93d1-246620e91eaf.jpeg");
     background-position: center;
     background-repeat: no-repeat;
@@ -27,7 +27,7 @@
     top: 0;
     width: 425px;
   }
-  
+
   .form {
     align-items: center;
     background: rgba(255, 255, 255, .6);
@@ -36,6 +36,14 @@
     flex-direction: column;
     justify-content: space-evenly;
     min-height: 300px;
+  }
+
+  .form-body {
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
   }
 
   input {
