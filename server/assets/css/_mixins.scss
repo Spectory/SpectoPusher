@@ -1,0 +1,41 @@
+@mixin button($height, $width) {
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 21px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  font-weight: 600;
+  height: $height;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  width: $width;
+}
+
+@mixin input($height, $width) {
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 21px;
+  color: #f1f6f9;
+  height: $height;
+  padding: 0 20px;
+  text-overflow: ellipsis;
+  transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  width: $width;
+
+  &:focus {
+    width: $width * 1.5;
+    cursor: default;
+    transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+
+  &::placeholder {
+    color: #f1f6f9;
+    opacity: 1;
+    text-align: center;
+  }
+}

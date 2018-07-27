@@ -1,5 +1,6 @@
 @import "normalize";
 @import 'login';
+@import 'admin';
 
 * {
   box-sizing: border-box;
@@ -8,4 +9,11 @@
 
 body, html {
   height: 100%;
+}
+
+.page {
+  background: #eee;
+  font: normal 20px/normal "Antic", Helvetica, sans-serif;
+  height: 100%;
+  width: 100%;
 }

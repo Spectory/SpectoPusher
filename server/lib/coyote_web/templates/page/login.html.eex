@@ -1,4 +1,4 @@
-<div class="login-page">
+<div class="page login-page">
   <div class="login-img" title="Credit: http://www.epsilontheory.com/wp-content/uploads/epsilon-theory-too-clever-by-half-february-2-2018-coyote.jpg"></div>
   <div class="login-form">
     <%= form_for @conn, page_path(@conn, :login), [as: :credentials, class: "form"], fn f -> %>

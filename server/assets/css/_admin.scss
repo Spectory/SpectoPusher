@@ -1,0 +1,87 @@
+@import 'mixins';
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+.admin-page {
+  header {
+    align-items: center;
+    box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
+    display: flex;
+    height: 60px;
+    padding: 0 .5rem;
+    width: 100%;
+  }
+
+  section {
+    max-width: 1024px;
+    margin: auto;
+  }
+
+  .logo {
+    background-image: url("https://png.icons8.com/color/50/000000/overwolf.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60px;
+    width: 60px;
+  }
+
+  .title {
+    color:#424242;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 0 0.5rem;
+  }
+
+  .sub-title {
+    border-bottom: 1px solid black;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+    margin: auto;
+    padding-top: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  form {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem auto;
+    max-width: 300px;
+  }
+
+  .submit-button {
+    @include button(32px, 80px);
+    font-size: small;
+  }
+
+  input {
+    @include input(32px, 136px);
+    font-size: 1rem;
+  }
+
+  .topic,
+  .token {
+    display: flex;
+    line-height: 1.2;
+    margin: 1px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.6);
+      color: #f1f6f9;
+    }
+  }
+
+  .token {
+    font-size: small;
+    margin: 2px 0;
+    text-align: center;
+  }
+
+  .small-text {
+    font-size: 1rem;
+    font-style: italic;
+    margin: 0.3rem 0;
+  }
+}

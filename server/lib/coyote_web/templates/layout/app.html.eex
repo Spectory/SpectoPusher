@@ -12,7 +12,7 @@
 
     <%# Favicon with credits. %>
     <link rel="icon" href="https://png.icons8.com/color/50/000000/overwolf.png" type="image/x-icon"/>
-    <a style="disply: none" href="https://icons8.com">Icon pack by Icons8</a>
+    <a style="display: none" href="https://icons8.com">Icon pack by Icons8</a>
 
   </head>
 

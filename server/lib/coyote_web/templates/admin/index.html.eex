@@ -1,31 +1,30 @@
-<div class="admin-page">
-  <div class="topic-form">
-    <%= form_for @conn, admin_path(@conn, :create_topic), [as: :topic], fn f -> %>
-      <div class='form-body'>
-        <label>Topic</label>
-        <div class='form-group'>
-          Name: <%= text_input f, :name %>
-        </div>
-      <%= submit "Create", class: "login-button" %>
-    <% end %>
-  </div>
+<div class="page admin-page">
+  <header>
+    <div class="logo"></div>
+    <div class="title">Coyote</div>
+  </header>
 
-   <div class="topics-table">
-    <div class="topics-header topics-row ">
-      <div class="topics-name">Name</div>
-      <div class="topics-count">Live Connections</div>
-    </div>
+  <section>
+    <div class="sub-title">Topics</div>
+    <%= form_for @conn, admin_path(@conn, :create_topic), [as: :topic], fn f -> %>
+      <%= text_input f, :name, placeholder: "Topic Name" %>
+      <%= submit "Create", class: "submit-button" %>
+    <% end %>
+
     <%= for topic <- @topics do %>
-      <div class="topics-row">
-        <div class="topics-name"><%= topic %></div>
-        <div class="topics-count">-todo-</div>
+      <div class="topic">
+        <%= topic %>
       </div>
     <% end%>
-  </div>
+  </section>
 
-  <%= for token <- @tokens do %>
-    <div>
-      <%= token %>
-    </div>
-  <% end%>
+  <section>
+    <div class="sub-title">Tokens</div>
+    <div class="small-text">Random socket connection tokens:</div>
+    <%= for token <- @tokens do %>
+      <div class="token">
+        <%= token %>
+      </div>
+    <% end%>
+  </section>
 </div>
