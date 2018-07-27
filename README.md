@@ -1,5 +1,5 @@
 <p href="https://aimeos.org/">
-  <img src="https://png.icons8.com/color/50/000000/overwolf.png" align="right" height="40" />
+  <img src="https://png.icons8.com/color/50/000000/overwolf.png" align="right" height="60" />
 </p>
 
 # Coyote → Fast · Secure · Shippable
