@@ -11,6 +11,16 @@ Coyote is a micro service providing web socket system. Its is
 * Shippable - Easy to deploy (TBD).
 * Integrable - Provide clients modules for easy integration (TBD).
 
+## Demo
+
+[Live demo on heroku](https://coyote-demo.herokuapp.com)
+
+Access key: letmein
+
+See [Demo 3](demos/vanila/demo3).
+
+**Notice: Created topics are stored on the file system, which is flushed by Heroku on dyno restart.**
+
 ## Usage Examples
 
 See [demos folder](demos)
